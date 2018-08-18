@@ -27,7 +27,7 @@ module.exports = {
                 console.log('Something went wrong when creating a user, detail: ', err);
                 res.json({message: 'Error', error: err});   
             }else{
-                res.redirect('/users');
+                res.redirect('/dashboard');
             }
         });
     },
