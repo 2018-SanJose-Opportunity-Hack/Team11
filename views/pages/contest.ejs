@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<% include ../partials/head %>
+</head>
+
+<body>
+
+<h1>Contest</h1>
+
+<h3>Create</h3>
+<form method="post" action="/contests">
+	Max Winners: <input type="text" name="max_winners"><br>
+	
+	<hr>
+	
+	Winner cards:<br>
+	<input type="hidden" name="winnercard1_title"><br>
+	<input type="hidden" name="winnercard1_content"><br>
+	
+	card 1 Image URL <input type="text" name="winnercard1_image"><br>
+	card 1 Value <input type="text" name="winnercard1_value"><br>
+	<br>
+	<input type="hidden" name="winnercard2_title"><br>
+	<input type="hidden" name="winnercard2_content"><br>
+	card 2 Image URL<input type="text" name="winnercard2_image"><br>
+	card 2 Value<input type="text" name="winnercard2_value"><br>
+	<br>
+	<input type="hidden" name="winnercard3_title"><br>
+	<input type="hidden" name="winnercard3_content"><br>
+	card 3 Image URL<input type="text" name="winnercard3_image"><br>
+	card 3 Value<input type="text" name="winnercard3_value"><br>
+
+	<hr>
+	Default card: <br>
+	<input type="hidden" name="losercard_title"><br>
+	<input type="hidden" name="losercard_content"><br>
+	Image URL<input type="text" name="losercard_image"><br>
+
+	<br>
+
+	Start Date: 
+	<input type="date" id="start_date" name="start_date"
+	value="2018-08-18"
+	min="2018-08-18" max="3000-12-31" />
+	<br>
+
+	End Date: 
+	<input type="date" id="end_date" name="end_date"
+	value="2018-08-25"
+	min="2018-08-18" max="3000-12-31" />
+	<br>
+
+
+	<input type="submit" value="Create">
+</form>
+
+</body>
+</html>
