@@ -18,6 +18,10 @@ module.exports = function(app) {
         res.render('pages/create_contest');
     });
 
+    app.get('/contest', function(req,res) {
+        res.render('pages/contest');
+    })
+
     //----------API BELOW---------
     // For contests
     app.get('/contests', function(req, res) {
