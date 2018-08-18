@@ -22,6 +22,8 @@ module.exports = {
         });
     },
     create: function(req, res){
+        const today = new Date(); const after_week = new Date(today.getDate() + 7);
+        //const contest = { max_winners: req.body.max_winners, time_period: { start_date: today, end_date: after_week }};
         Contest.create(req.body, function(err){
             if(err){
                 console.log('Something went wrong when creating a contest, detail: ', err);
