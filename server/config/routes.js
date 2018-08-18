@@ -2,13 +2,22 @@ const contests = require('../controllers/contests');
 const users = require('../controllers/users');
 
 module.exports = function(app) {
-    // index page 
     app.get('/', function(req, res) {
-        contests.index(req, res);
+        res.render('pages/index')
     });
-
-    // about page 
+    app.get('/dashboard', function(req, res){
+        res.render('pages/dashboard');
+    })
+    app.get('/dashboard/createcontest', function(req, res){
+        res.render('pages/create_contest');
+    })
+    app.get('dashboard/contest/:id', function(req, res){
+        res.render('admin_contest');
+    })
+    app.get('contest/:id', function(req, res){
+        res.render('user_contest');
+    })
     app.get('/payment', function(req, res) {
-        contests.about(req, res);
+        res.render('payment');
     });
 }

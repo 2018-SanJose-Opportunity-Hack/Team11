@@ -1,0 +1,14 @@
+#nav{
+    width: 100vw;
+    height: 10vh;
+    background: linear-gradient(to right, #a6228e, #621354);
+}
+img#logo1{
+    height: 50px;
+}
+button{
+    background: #621354;
+}
+a{
+    color: #621354;
+}
