@@ -28,9 +28,15 @@ $( document ).ready(function() {
 	//   });
 	// });
 
+    function getHost() {
+      var add = location.origin + '/contests/<%= data._id %>';
+      document.getElementById("myInput").value = add;
+  }
+
+
   	$("#generateLink").click(function(event){
       event.preventDefault();
-      console.log("generateLink");
+      getHost();
       ajaxPost();
     });
 
