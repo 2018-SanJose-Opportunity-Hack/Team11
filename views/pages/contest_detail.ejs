@@ -29,10 +29,19 @@ $( document ).ready(function() {
 	// });
 
   	$("#generateLink").click(function(event){
-      event.preventDefault();
-      console.log("generateLink");
-      getHost()
-      ajaxPost();
+        event.preventDefault();
+        console.log("generateLink");
+        
+        if(location.hostname == 'localhost') {
+            var x = location.hostname + ':' + location.port;
+        } else {
+            var x = location.hostname;
+        }
+
+        var add = x + '/contests/<%= data._id %>';
+        document.getElementById("myInput").value = add;
+
+        ajaxPost();
     });
 
 	// GET REQUEST
@@ -81,7 +90,7 @@ function ajaxPost(){
 
     }
 
-})
+});
 
 </script>
 </head>
@@ -254,16 +263,6 @@ function ajaxPost(){
     console.log("Copied the text: " + copyText.value);
   }
 
-  function getHost() {
-      if(location.hostname == 'localhost') {
-        var x = location.hostname + ':' + location.port;
-      } else {
-        var x = location.hostname;
-      }
-      
-      var add = x + '/contests/<%= data._id %>';
-      document.getElementById("myInput").value = add;
-  }
 </script>
 
 </body>
