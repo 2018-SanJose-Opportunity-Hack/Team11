@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' href='/public/css/styles.css'>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+$( document ).ready(function() {
+	
+	// $("#generateLink").click(function(){
+  //   event.preventDefault();
+
+  //   console.log("generateLink");
+
+	//   var _id=$("#_id").val();
+	//   var title=$("#title").val();
+  //   var start_date = $("#start_date").val();
+  //   var end_date = $("#end_date").val();
+    
+	//   $.post("http://localhost:3000/contests/" + _id,{title: title,start_date: start_date, end_date: end_date}, function(data){
+  //     console.log("done");
+	//   });
+	// });
+
+  	$("#generateLink").click(function(event){
+      event.preventDefault();
+      console.log("generateLink");
+      ajaxPost();
+    });
+
+	// GET REQUEST
+	// $("#allCustomers").click(function(event){
+	// 	event.preventDefault();
+	// 	ajaxGet();
+	// });
+	
+function ajaxPost(){
+    	
+    	// PREPARE FORM DATA
+    	var formData = {
+    		_id : $("#_id").val(),
+    		title :  $("#title").val(),
+        max_winners: $("#max_winners").val(),
+        start_date: $("#start_date").val(),
+        end_date: $("#end_date").val(),
+        losercard_image: $("#losercard_image").val(),
+        winnercard1_image: $("#winnercard1_image").val(),
+        winnercard1_value: $("#winnercard1_value").val(),
+        winnercard2_image: $("#winnercard2_image").val(),
+        winnercard2_value: $("#winnercard2_value").val(),
+        winnercard3_image: $("#winnercard3_image").val(),
+        winnercard3_value: $("#winnercard3_value").val(),
+    	}
+    	
+    	// DO POST
+    	jQuery.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/contestsuploads/"+formData._id,
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			success : function(customer) {
+				// $("#postResultDiv").html("<p>" + 
+				// 	"Post Successfully! <br>" +
+				// 	"--->" + JSON.stringify(customer)+ "</p>"); 
+        console.log("DONE");
+			},
+			error : function(e) {
+				alert("Error!")
+				console.log("ERROR: ", e);
+			}
+		});
+    	
+
+    }
+
+})
+
+</script>
+</head>
+
+<body>
+    <div id='nav' class='p-2'>
+        <img id='logo1' src='https://saverlife.earn.org/static/assets/img/essp-pink-logo-white.png' alt='Saver Life'>
+    </div>
+    <div class='col-sm-8 my-5 mx-auto p-4 bg-light'>
+        <div class='border-bottom m-2'>
+            <h3>Contest Detail</h3>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" action="/contestsuploads/<%= data._id %>">
+            <input type="hidden" id="_id" name="_id" value="<%=data._id %>">
+            <div class=''>
+                <label class='col-sm-5'>Title: </label>
+                <input type="text" id="title" name="title" class='col-sm-3' value="<%=data.title %>">
+            </div>
+
+            <div class=''>
+                <label class='col-sm-5'>Max Winners: </label>
+                <input type="text" id="max_winners" name="max_winners" class='col-sm-3' value="<%=data.max_winners %>">
+            </div>
+
+            <div class=''>
+                <label class='col-sm-5'>Start Date: </label>
+                <input type="datetime-local" id="start_date" name="start_date"
+                value="<%=start_date %>"
+                min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6 border'>
+            </div>
+
+            <div class=''>
+                <label class='col-sm-5'>End Date: </label>
+                <input type="datetime-local" id="end_date" name="end_date"
+                value="<%=end_date %>"
+                min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6 border'>
+            </div>
+
+
+            <hr>
+
+            <h5 class='col px-0'>Default card </h5>
+            <input type="hidden" name="losercard_title">
+            <input type="hidden" name="losercard_content">
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <img src='/public/uploads/<%=data.loser_card.img_url %>' style='width:100px'>
+                </div>
+                <div class='col'>
+                    <div class='row'>
+                        <label class='col-sm-4'>Image URL: </label>
+                        <input type="hidden" id="losercard_image" name="losercard_image" class='col-sm-7' value="<%=data.loser_card.img_url %>">
+
+                        <input type="file" name="upl" class="form-control-file">
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <h5 class='col px-0'>Winner cards</h5>
+            <input type="hidden" name="winnercard1_title">
+            <input type="hidden" name="winnercard1_content">
+            
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <img src='/public/uploads/<%=data.winner_cards[0].img_url %>' style='width:100px'>
+                </div>
+                <div class='col'>
+                    <div class='row mb-2'>
+                        <label class='col-sm-5'>Card 1 </label>
+                        <input type="hidden" id="winnercard1_image" name="winnercard1_image" class='col-sm-6' value="<%=data.winner_cards[0].img_url %>">
+
+                        <input type="file" name="upl" class="form-control-file">
+                    </div>
+                    <div class='row'>
+                        <label class='col-sm-5 d-inline'>Gift Amount: </label>
+                        <input type="text" id="winnercard1_value" name="winnercard1_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[0].value %>">
+                    </div>
+                </div>
+            </div>
+            
+            <input type="hidden" name="winnercard2_title"><br>
+            <input type="hidden" name="winnercard2_content"><br>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <img src='/public/uploads/<%=data.winner_cards[1].img_url %>' style='width:100px'>
+                </div>
+                <div class='col'>
+                    <div class='row mb-2'>
+                        <label class='col-sm-5'>Card 2 </label>
+                        <input type="hidden" id="winnercard2_image" name="winnercard2_image" class='col-sm-6' value="<%=data.winner_cards[1].img_url %>">
+
+                        <input type="file" name="upl" class="form-control-file">
+                    </div>
+                    <div class='row'>
+                        <label class='col-sm-5 d-inline'>Gift Amount: </label>
+                        <input type="text" id="winnercard2_value" name="winnercard2_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[1].value %>">
+                    </div>
+                </div>
+            </div>
+            
+            <input type="hidden" name="winnercard3_title"><br>
+            <input type="hidden" name="winnercard3_content"><br>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <img src='/public/uploads/<%=data.winner_cards[2].img_url %>' style='width:100px'>
+                </div>
+                <div class='col'>
+                    <div class='row'>
+                        <label class='col-sm-5'>Card 3 </label>
+                        <input type="hidden" id="winnercard3_image" name="winnercard3_image" class='col-sm-6' value="<%=data.winner_cards[2].img_url %>">
+
+                        <input type="file" name="upl" class="form-control-file">
+                    </div>
+                    <div class='row'>
+                        <label class='col-sm-5 d-inline'>Gift Amount: </label>
+                        <input type="text" id="winnercard3_value" name="winnercard3_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[2].value %>">
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            
+            <div class='text-center'>
+                <!-- Button trigger modal -->
+                <button id="generateLink" type="button" class="btn btn-lg text-light" data-toggle="modal" data-target="#exampleModal">
+                  Generate Contest Link
+                </button>
+
+            </div>
+        </form>
+    </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Contest Link</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- The text field -->
+        <input type="text" class='col-sm-8' value="http://localhost:3000/contests/<%= data._id%>" id="myInput">
+
+        <!-- The button used to copy the text -->
+        <button class="btn text-light" onclick="myFunction()">Copy text</button>
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function myFunction() {
+    /* Get the text field */
+    var copyText = document.getElementById("myInput");
+
+    /* Select the text field */
+    copyText.select();
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+
+    /* Alert the copied text */
+    console.log("Copied the text: " + copyText.value);
+  }
+</script>
+
+</body>
+
+</html>

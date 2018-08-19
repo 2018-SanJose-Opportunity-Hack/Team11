@@ -15,6 +15,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({secret: 'the_secret_key_hehe', resave: false, saveUninitialized: true, cookie: {maxAge : 60000}}));
 app.use('/public', express.static('public'));
+// app.use(express.static('uploads'));
 
 require('./server/config/mongoose.js');
 require('./server/config/routes')(app);
