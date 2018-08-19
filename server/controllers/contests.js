@@ -61,7 +61,7 @@ module.exports = {
                 console.log('Something went wrong when getting a single contest');
                 res.json({message: 'Error', error: err});
             }else{
-                res.render('pages/metrics', {message: 'Success', data: contest });
+                res.render('pages/stats', {message: 'Success', data: contest });
             }
         });
     },
