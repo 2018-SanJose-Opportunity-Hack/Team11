@@ -9,6 +9,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script>
 $( document ).ready(function() {
 	
@@ -199,7 +200,7 @@ function ajaxPost(){
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Contest Link</h5>
@@ -208,14 +209,37 @@ function ajaxPost(){
         </button>
       </div>
       <div class="modal-body">
-        http://localhost:3000/contest/<%= data._id%>
+        
+        <!-- The text field -->
+        <input type="text" class='col-sm-8' value="http://localhost:3000/contest/<%= data._id%>" id="myInput">
+
+        <!-- The button used to copy the text -->
+        <button class="btn text-light" onclick="myFunction()">Copy text</button>
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
       </div>
     </div>
   </div>
 </div>
+
+
+<script>
+  function myFunction() {
+    /* Get the text field */
+    var copyText = document.getElementById("myInput");
+
+    /* Select the text field */
+    copyText.select();
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+
+    /* Alert the copied text */
+    console.log("Copied the text: " + copyText.value);
+  }
+</script>
 
 </body>
 
