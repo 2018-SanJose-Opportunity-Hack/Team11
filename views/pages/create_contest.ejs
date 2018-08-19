@@ -15,27 +15,27 @@
             <h3>Create Contest</h3>
         </div>
         <form method="post" action="/contests">
-            <div class='mb-3'>
+            <div class=''>
                 <label class='col-sm-5'>Title: </label>
                 <input type="text" name="title" class='col-sm-6'>
             </div>
 
-            <div class='mb-3'>
+            <div class=''>
                 <label class='col-sm-5'>Max Winners: </label>
                 <input type="text" name="max_winners" class='col-sm-6'>
             </div>
 
-            <div class='mb-3'>
+            <div class=''>
                 <label class='col-sm-5'>Start Date: </label>
                 <input type="datetime-local" id="start_date" name="start_date"
                 value="2018-08-18T08:00"
-                min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6'>
+                min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6 border'>
             </div>
-            <div class='mb-3'>
+            <div class=''>
                 <label class='col-sm-5'>End Date: </label>
                 <input type="datetime-local" id="end_date" name="end_date"
                 value="2018-08-25T08:00"
-                min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6'>
+                min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6 border'>
             </div>
 
             <hr>
@@ -44,11 +44,11 @@
             <input type="hidden" name="losercard_title">
             <input type="hidden" name="losercard_content">
             <div class='col'>
-                <div class='row'>
+                <div class='row mb-2'>
                     <label class='col-sm-4'>Image URL: </label>
                     <input type="text" name="losercard_image" class='col-sm-6 border'>
                 </div>
-                <div class='row'>
+                <div class='row mb-2'>
                     <label class='col-sm-4'>Start Date: </label>
                     <input type="datetime-local" id="start_date" name="start_date"
                     value="2018-08-18T08:00"
@@ -62,16 +62,6 @@
                 </div>
             </div>
 
-            <h5 class='col'>Default card </h5>
-            <input type="hidden" name="losercard_title">
-            <input type="hidden" name="losercard_content">
-            <div class='col'>
-                <div class='row'>
-                    <label class='col-sm-5'>Image URL: </label>
-                    <input type="text" name="losercard_image" class='col-sm-6'>
-                </div>
-            </div>
-
             <hr>
 
             <h5 class='col'>Winner cards</h5>
@@ -79,7 +69,7 @@
             <input type="hidden" name="winnercard1_content">
             
             <div class='col'>
-                <div class='row'>
+                <div class='row mb-2'>
                     <label class='col-sm-4'>Card 1 Image URL: </label>
                     <input type="text" name="winnercard1_image" class='col-sm-6 border'>
                 </div>
@@ -92,7 +82,7 @@
             <input type="hidden" name="winnercard2_title"><br>
             <input type="hidden" name="winnercard2_content"><br>
             <div class='col'>
-                <div class='row'>
+                <div class='row mb-2'>
                     <label class='col-sm-4'>Card 2 Image URL: </label>
                     <input type="text" name="winnercard2_image" class='col-sm-6 border'>
                 </div>
@@ -105,7 +95,7 @@
             <input type="hidden" name="winnercard3_title"><br>
             <input type="hidden" name="winnercard3_content"><br>
             <div class='col'>
-                <div class='row'>
+                <div class='row mb-2'>
                     <label class='col-sm-4'>Card 3 Image URL: </label>
                     <input type="text" name="winnercard3_image" class='col-sm-6 border'>
                 </div>
