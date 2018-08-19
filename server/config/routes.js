@@ -2,6 +2,7 @@ const contests = require('../controllers/contests');
 const users = require('../controllers/users');
 const gyft = require('../controllers/gyft');
 const paypal = require('../controllers/paypal');
+const processpayment = require('../controllers/processpayment');
 
 module.exports = function(app) {
     // login registration page
@@ -60,6 +61,9 @@ module.exports = function(app) {
     // Paypal instant pay
     app.get('/paypal', function (req, res) {
     	paypal.instapay(req, res);
+    });
+    app.get('/processpayment', function (req, res) {
+        processpayment.payout(req, res)
     });
     // For users
     app.get('/users', function(req, res) {
