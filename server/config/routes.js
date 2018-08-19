@@ -13,7 +13,8 @@ module.exports = function(app) {
     });
     // dashboard
     app.get('/dashboard', function(req, res) {
-        res.render('pages/dashboard');
+        const contests = contests.all(req, res);
+        res.render('pages/dashboard', {contests});
     });
     app.get('/dashboard/create_contest', function(req, res) {
         res.render('pages/create_contest');
@@ -30,6 +31,10 @@ module.exports = function(app) {
     app.get('/expired', function(req, res) {
         res.render('pages/expired');
     });
+
+    app.get('/metrics', function(req,res) {
+        res.render('pages/metrics', {title: 'Metrics Baby!'});
+    })
 
     //----------API BELOW---------
     // For contests
