@@ -1,6 +1,7 @@
 require('../models/user.js');
 
 ContestSchema = new mongoose.Schema({
+    title: { type: String },
     max_winners: { type: Number, default: 1 },
     loser_card: { img_url: String, title: String, content: String },
     winner_cards: [{ img_url: String, value: Number, title: String, content: String }],

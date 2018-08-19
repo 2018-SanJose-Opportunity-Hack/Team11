@@ -15,16 +15,23 @@
             <a class='btn' href='/dashboard/create_contest'>+ create contest</a>
         </div>
         <h5>Contests</h5>
+
         <div class="card-deck">
-            <% for (let contest of contests) { %>
-            <div class="card">
-                <img class="card-img-top" src='https://i.imgur.com/QWSFMlb.png' alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><% contest.start_date %> - <% contest.end_date %></h5>
+            <% for(let i=0 ; i < data.length ; i++) { %>
+                <div class="card">
+                    <img class="card-img-top" src='https://i.imgur.com/QWSFMlb.png' alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= data[i].title %></h5>
+                        <a href="/dashboard/contests/<%=data[i]._id %>" class="btn btn-primary">Manage</a>
+                        <a href="/dashboard/stats/<%=data[i]._id %>" class="btn btn-info">Stats</a>
+                    </div>
                 </div>
-            </div>
+
             <% } %>
+
         </div>
+
+
     </div>
 </body>
 

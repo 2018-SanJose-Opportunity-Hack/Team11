@@ -15,8 +15,17 @@ module.exports = function(app) {
     });
     // dashboard
     app.get('/dashboard', function(req, res) {
-        res.render('pages/dashboard', {contests});
+        contests.all_v2(req, res);
     });
+    app.get('/dashboard/contests/:id', function(req, res) {
+        contests.one_v2(req, res);
+    });
+
+    app.get('/dashboard/stats/:id', function(req, res) {
+        contests.stats(req, res);
+    });
+
+
     app.get('/dashboard/create_contest', function(req, res) {
         res.render('pages/create_contest');
     });
@@ -48,7 +57,8 @@ module.exports = function(app) {
     app.post('/contests', function(req, res) {
         contests.create(req, res);
     });
-    app.put('/contests/:id', function(req, res) {
+    app.post('/contests/:id', function(req, res) {
+        console.log('here');
         contests.update(req, res);
     });
     app.delete('/contests/:id', function(req, res) {
