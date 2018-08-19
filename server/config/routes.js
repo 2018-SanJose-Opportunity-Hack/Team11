@@ -1,6 +1,7 @@
 const contests = require('../controllers/contests');
 const users = require('../controllers/users');
 const gyft = require('../controllers/gyft');
+const paypal = require('../controllers/paypal');
 
 module.exports = function(app) {
     // login registration page
@@ -55,6 +56,10 @@ module.exports = function(app) {
      // Gyft APIs
     app.get('/gyft', function (req, res) {
     	gyft.purchaseCard(req, res);
+    });
+    // Paypal instant pay
+    app.get('/paypal', function (req, res) {
+    	paypal.instapay(req, res);
     });
     // For users
     app.get('/users', function(req, res) {
