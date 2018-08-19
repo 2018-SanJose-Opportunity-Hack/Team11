@@ -80,7 +80,7 @@ module.exports = {
                 res.json({message: 'Error', error: err});
             }else{
                 User.findOne({_id: req.body.id}, function(err, user) {
-                    const today = new Date();
+                    let today = new Date();
                     console.log(contest);
                     if ( false ) { //today < contest.start_date || today > contest.end_date ||user.participated
                         res.redirect('/expire');
@@ -117,7 +117,7 @@ module.exports = {
                                 } 
                             }
                             if(0 <= h && h <= 6) {
-                                const determine = Math.floor(Math.random() * Math.floor(20));
+                                let determine = Math.floor(Math.random() * Math.floor(20));
                                 if(determine == 0) {
                                     Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
@@ -151,7 +151,7 @@ module.exports = {
                                 }
                             }
                             else if(12 <= h && h <= 18) {
-                                const determine = Math.floor(Math.random() * Math.floor(30));
+                                let determine = Math.floor(Math.random() * Math.floor(30));
                                 if(determine == 0) {
                                     Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
@@ -185,7 +185,7 @@ module.exports = {
                                 }
                             }
                             else {
-                                const determine = Math.floor(Math.random() * Math.floor(60));
+                                let determine = Math.floor(Math.random() * Math.floor(60));
                                 if(determine == 0) {
                                     Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
@@ -236,7 +236,7 @@ module.exports = {
                                 }                               
                             }
                             if(0 <= h && h <= 6) {
-                                const determine = Math.floor(Math.random() * Math.floor(15));
+                                let determine = Math.floor(Math.random() * Math.floor(15));
                                 if(determine == 0) {
                                     Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
@@ -270,7 +270,7 @@ module.exports = {
                                 }
                             }
                             else if(12 <= h && h <= 18) {
-                                const determine = Math.floor(Math.random() * Math.floor(25));
+                                let determine = Math.floor(Math.random() * Math.floor(25));
                                 if(determine == 0) {
                                     Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
@@ -304,7 +304,7 @@ module.exports = {
                                 }
                             }
                             else {
-                                const determine = Math.floor(Math.random() * Math.floor(40));
+                                let determine = Math.floor(Math.random() * Math.floor(40));
                                 if(determine == 0) {
                                     Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
@@ -340,7 +340,7 @@ module.exports = {
                         }
                         //------------------------------------------------
                         else {
-                            console.log('came here');
+                            console.log('lmao');
                             for(let user of contest.users_won) {
                                 if(user.day == n && user.hour == h) {
                                     User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
@@ -356,7 +356,7 @@ module.exports = {
                                 } 
                             }
                             if(0 <= h && h <= 6) {
-                                const determine = Math.floor(Math.random() * Math.floor(8));
+                                let determine = Math.floor(Math.random() * Math.floor(8));
                                 if(determine == 0) {
                                     Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
@@ -389,8 +389,9 @@ module.exports = {
                                     }); 
                                 }
                             }
-                            else if(12 <= h && h <= 18) {
-                                const determine = Math.floor(Math.random() * Math.floor(15));
+                            else if(12 <= h && h <= 18) {       
+                                let determine = Math.floor(Math.random() * Math.floor(15));
+                                console.log(determine);
                                 if(determine == 0) {
                                     Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
@@ -411,6 +412,7 @@ module.exports = {
                                         }
                                     });
                                 } else {
+                                    console.log('wow');
                                     User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
@@ -424,7 +426,7 @@ module.exports = {
                                 }
                             }
                             else {
-                                const determine = Math.floor(Math.random() * Math.floor(20));
+                                let determine = Math.floor(Math.random() * Math.floor(20));
                                 if(determine == 0) {
                                     Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
