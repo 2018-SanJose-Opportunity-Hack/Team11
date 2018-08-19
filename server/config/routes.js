@@ -45,7 +45,7 @@ module.exports = function(app) {
         res.render('pages/expired');
     });
     app.get('/metrics', function(req,res) {
-        res.render('pages/metrics', {title: 'Metrics Baby!'});
+        res.render('pages/stats', {title: 'Metrics Baby!'});
     })
 
     //----------API BELOW---------

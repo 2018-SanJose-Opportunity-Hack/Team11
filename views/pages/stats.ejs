@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' href='/public/css/styles.css'>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <div id='nav' class='p-2'>
+        <img id='logo1' src='https://saverlife.earn.org/static/assets/img/essp-pink-logo-white.png' alt='Saver Life'>
+    </div>
+
+    <div class="container">
+
+    <br><br>
+        <div class="card-deck">
+            <div class="card alert-secondary mb-3" style="max-width: 15rem;">
+                <div class="card-header">Total</div>
+                <div class="card-body">
+                    <h1 class="card-title">200</h1>
+                </div>
+            </div>
+            <div class="card text-white bg-primary mb-3" style="max-width: 15rem;">
+                <div class="card-header">Participate</div>
+                <div class="card-body">
+                    <h1 class="card-title">154</h1>
+                </div>
+            </div>
+            <div class="card text-white bg-success mb-3" style="max-width: 15rem;">
+                <div class="card-header">Winners</div>
+                <div class="card-body">
+                    <h1 class="card-title">96</h1>
+                </div>
+            </div>            
+            <div class="card text-white bg-warning mb-3" style="max-width: 15rem;">
+                <div class="card-header">Redeem</div>
+                <div class="card-body">
+                    <h1 class="card-title">66</h1>
+                </div>
+            </div>
+            
+        </div>
+
+    <div id="myDivTimeSeries"><!-- Plotly chart will be drawn inside this DIV --></div>
+
+    <script>
+
+    var trace1 = {
+        x: ['2018-08-18', '2018-08-19', '2018-08-20', '2018-08-21', '2018-08-22', '2018-08-23', '2018-08-24'], 
+        y: [20, 14, 23, 30, 33, 23, 11], 
+        name: 'Participate',
+        line: {color: '#1E70FF'},
+        // marker:{
+        //     color: ['rgba(63, 191, 63,1)', 'rgba(63, 191, 63,1)', 'rgba(63, 191, 63,1)']
+        // },
+        type: 'scatter'
+    };  
+    var trace2 = {
+        x: ['2018-08-18', '2018-08-19', '2018-08-20', '2018-08-21', '2018-08-22', '2018-08-23', '2018-08-24'], 
+        y: [20, 14, 10, 11, 17, 17, 7], 
+        name: 'Winners',
+        line: {color: '#3FBF3F'},
+        // marker:{
+        //     color: ['rgba(191, 63, 191,0.8)', 'rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)']
+        // },
+        type: 'scatter'
+    };
+
+    var trace3 = {
+        x: ['2018-08-18', '2018-08-19', '2018-08-20', '2018-08-21', '2018-08-22', '2018-08-23', '2018-08-24'], 
+        y: [11, 7, 3, 10, 15, 17, 3], 
+        name: 'Redeem',
+        line: {color: '#FFAC1E'},
+        // marker:{
+        //     color: ['rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)', 'rgba(222,45,38,0.8)']
+        // },
+        type: 'scatter'
+    };
+
+
+    var data = [trace1, trace2, trace3];
+    var layout = {
+    // title: 'Basic Time Series',
+    };
+
+    Plotly.newPlot('myDivTimeSeries', data, layout);
+
+
+
+
+    </script>
+    
+    </div> <!-- eof container -->
+
+
+</body>
+
+</html>
