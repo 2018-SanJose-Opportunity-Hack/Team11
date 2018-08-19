@@ -12,3 +12,6 @@ button{
 a{
     color: #621354;
 }
+#shad{
+    box-shadow: 2px 2px 10px;
+}
