@@ -43,13 +43,13 @@
 			<form class="form" style="visibility: hidden;">
 				<!-- <h2><%= contest.winner_cards[card_mark].title %></h2>
 				<h3><%= contest.winner_cards[card_mark].content %></h3> -->
-				<button><img src=<%= contest.winner_cards[card_mark].img_url %> alt="card image"></button>
+				<a href="/payment"><img src=<%= contest.winner_cards[card_mark].img_url %> alt="card image"></a>
 			</form>
 		<% } else { %>
 			<form class="form" style="visibility: hidden;">
 				<!-- <h2><%= contest.loser_card.title %></h2>
 				<h3><%= contest.loser_card.content %></h3> -->
-				<button><img src=<%= contest.loser_card.img_url %> alt="card image"></button>
+				<a href="/payment"><img src=<%= contest.loser_card.img_url %> alt="card image"></a>
 			</form> 
 		<% } %>
 	</div>
