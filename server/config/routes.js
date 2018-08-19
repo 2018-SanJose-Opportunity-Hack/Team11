@@ -64,6 +64,7 @@ module.exports = function(app) {
 
     app.get('/contest', function(req, res) {
         console.log(req.session.user);
+        req.session.user.win = true;
         res.render('pages/contest', {user: req.session.user, contest: req.session.contest, card_mark: 2});
     })
     app.get('/metrics', function(req,res) {
