@@ -13,7 +13,7 @@ module.exports = {
         });
     },
     one: function(req, res){
-        User.findOne({_id: req.params.id}, function(err, user){
+        User.findOne({_id: req.body.id}, function(err, user){
             if(err){
                 console.log('Something went wrong when getting a single user');
                 res.json({message: 'Error', error: err});
@@ -33,7 +33,7 @@ module.exports = {
         });
     },
     update: function(req, res){
-        User.findOneAndUpdate({_id: req.params.id}, {$set: req.body}, { runValidators: true }, function(err){
+        User.findOneAndUpdate({_id: req.body.id}, {$set: req.body}, { runValidators: true }, function(err){
             if(err){
                 console.log('Something went wrong when updating a user, detail: ', err);
                 res.json({message: 'Error', error: err});
@@ -43,7 +43,7 @@ module.exports = {
         });
     },
     remove: function(req, res){
-        User.findOneAndRemove({_id: req.params.id}, function(err){
+        User.findOneAndRemove({_id: req.body.id}, function(err){
             if(err){
                 console.log('Something went wrong when removing a user');
                 res.json({message: 'Error', error: err});
@@ -73,18 +73,18 @@ module.exports = {
         })
     },
     make_win: function(req, res){
-        Contest.findOne({_id: req.body.id}, function(err, contest) {
+        Contest.findOne({_id: req.param.id}, function(err, contest) {
             if(err){
                 console.log('Something went wrong when getting a single contest');
                 res.json({message: 'Error', error: err});
             }else{
-                User.findOne({_id: req.params.id}, function(err, user) {
+                User.findOne({_id: req.body.id}, function(err, user) {
                     const today = new Date();
                     console.log(contest);
                     if (today < contest.start_date || today > contest.end_date || user.participated ) {
                         res.redirect(303, '/expired');
                     } else if(contest.users_won.length > contest.max_winners) {
-                        User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                        User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                             if(err){
                                 console.log('Something went wrong when updating a user, detail: ', err);
                                 res.json({message: 'Error', error: err});
@@ -101,7 +101,7 @@ module.exports = {
                         if (n == 1 || n == 2) {
                             for(let user of contest.users_won) {
                                 if(user.day == n && user.hour == h) {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -114,13 +114,13 @@ module.exports = {
                             if(0 <= h && h <= 6) {
                                 const determine = Math.floor(Math.random() * Math.floor(20));
                                 if(determine == 0) {
-                                    Contest.findOneAndUpdate({_id: req.body.id}, {$push: {users_won: user}}, function(err) {
+                                    Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
                                             console.log('Something went wrong when updating a contest, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }
                                         else {
-                                            User.findOneAndUpdate({_id: req.params.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                            User.findOneAndUpdate({_id: req.body.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                                 if(err){
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
@@ -131,7 +131,7 @@ module.exports = {
                                         }
                                     });
                                 } else {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -144,13 +144,13 @@ module.exports = {
                             else if(12 <= h && h <= 18) {
                                 const determine = Math.floor(Math.random() * Math.floor(30));
                                 if(determine == 0) {
-                                    Contest.findOneAndUpdate({_id: req.body.id}, {$push: {users_won: user}}, function(err) {
+                                    Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
                                             console.log('Something went wrong when updating a contest, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }
                                         else {
-                                            User.findOneAndUpdate({_id: req.params.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                            User.findOneAndUpdate({_id: req.body.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                                 if(err){
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
@@ -161,7 +161,7 @@ module.exports = {
                                         }
                                     });
                                 } else {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -174,13 +174,13 @@ module.exports = {
                             else {
                                 const determine = Math.floor(Math.random() * Math.floor(60));
                                 if(determine == 0) {
-                                    Contest.findOneAndUpdate({_id: req.body.id}, {$push: {users_won: user}}, function(err) {
+                                    Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
                                             console.log('Something went wrong when updating a contest, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }
                                         else {
-                                            User.findOneAndUpdate({_id: req.params.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                            User.findOneAndUpdate({_id: req.body.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                                 if(err){
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
@@ -191,7 +191,7 @@ module.exports = {
                                         }
                                     });
                                 } else {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -206,7 +206,7 @@ module.exports = {
                         else if (n == 3 || n == 4 || n == 5) {
                             for(let user of contest.users_won) {
                                 if(user.day == n && user.hour == h) {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -219,13 +219,13 @@ module.exports = {
                             if(0 <= h && h <= 6) {
                                 const determine = Math.floor(Math.random() * Math.floor(15));
                                 if(determine == 0) {
-                                    Contest.findOneAndUpdate({_id: req.body.id}, {$push: {users_won: user}}, function(err) {
+                                    Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
                                             console.log('Something went wrong when updating a contest, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }
                                         else {
-                                            User.findOneAndUpdate({_id: req.params.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                            User.findOneAndUpdate({_id: req.body.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                                 if(err){
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
@@ -236,7 +236,7 @@ module.exports = {
                                         }
                                     });
                                 } else {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -249,13 +249,13 @@ module.exports = {
                             else if(12 <= h && h <= 18) {
                                 const determine = Math.floor(Math.random() * Math.floor(25));
                                 if(determine == 0) {
-                                    Contest.findOneAndUpdate({_id: req.body.id}, {$push: {users_won: user}}, function(err) {
+                                    Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
                                             console.log('Something went wrong when updating a contest, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }
                                         else {
-                                            User.findOneAndUpdate({_id: req.params.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                            User.findOneAndUpdate({_id: req.body.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                                 if(err){
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
@@ -266,7 +266,7 @@ module.exports = {
                                         }
                                     });
                                 } else {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -279,13 +279,13 @@ module.exports = {
                             else {
                                 const determine = Math.floor(Math.random() * Math.floor(40));
                                 if(determine == 0) {
-                                    Contest.findOneAndUpdate({_id: req.body.id}, {$push: {users_won: user}}, function(err) {
+                                    Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
                                             console.log('Something went wrong when updating a contest, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }
                                         else {
-                                            User.findOneAndUpdate({_id: req.params.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                            User.findOneAndUpdate({_id: req.body.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                                 if(err){
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
@@ -296,7 +296,7 @@ module.exports = {
                                         }
                                     });
                                 } else {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -312,7 +312,7 @@ module.exports = {
                             console.log('came here');
                             for(let user of contest.users_won) {
                                 if(user.day == n && user.hour == h) {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -325,13 +325,13 @@ module.exports = {
                             if(0 <= h && h <= 6) {
                                 const determine = Math.floor(Math.random() * Math.floor(8));
                                 if(determine == 0) {
-                                    Contest.findOneAndUpdate({_id: req.body.id}, {$push: {users_won: user}}, function(err) {
+                                    Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
                                             console.log('Something went wrong when updating a contest, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }
                                         else {
-                                            User.findOneAndUpdate({_id: req.params.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                            User.findOneAndUpdate({_id: req.body.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                                 if(err){
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
@@ -342,7 +342,7 @@ module.exports = {
                                         }
                                     });
                                 } else {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -355,13 +355,13 @@ module.exports = {
                             else if(12 <= h && h <= 18) {
                                 const determine = Math.floor(Math.random() * Math.floor(15));
                                 if(determine == 0) {
-                                    Contest.findOneAndUpdate({_id: req.body.id}, {$push: {users_won: user}}, function(err) {
+                                    Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
                                             console.log('Something went wrong when updating a contest, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }
                                         else {
-                                            User.findOneAndUpdate({_id: req.params.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                            User.findOneAndUpdate({_id: req.body.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                                 if(err){
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
@@ -372,7 +372,7 @@ module.exports = {
                                         }
                                     });
                                 } else {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
@@ -385,13 +385,13 @@ module.exports = {
                             else {
                                 const determine = Math.floor(Math.random() * Math.floor(20));
                                 if(determine == 0) {
-                                    Contest.findOneAndUpdate({_id: req.body.id}, {$push: {users_won: user}}, function(err) {
+                                    Contest.findOneAndUpdate({_id: req.param.id}, {$push: {users_won: user}}, function(err) {
                                         if(err) {
                                             console.log('Something went wrong when updating a contest, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }
                                         else {
-                                            User.findOneAndUpdate({_id: req.params.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                            User.findOneAndUpdate({_id: req.body.id}, {$set: {win: true, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                                 if(err){
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
@@ -402,7 +402,7 @@ module.exports = {
                                         }
                                     });
                                 } else {
-                                    User.findOneAndUpdate({_id: req.params.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
+                                    User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                                         if(err){
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
