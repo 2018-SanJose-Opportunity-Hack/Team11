@@ -2,18 +2,25 @@ const contests = require('../controllers/contests');
 const users = require('../controllers/users');
 
 module.exports = function(app) {
-    // index page 
+    // login registration page
     app.get('/', function(req, res) {
-        res.render('pages/');
+        res.render('pages/index');
     });
     // about page 
     app.get('/payment', function(req, res) {
         res.render('pages/payment');
     });
-    // result page
-    app.get('/result', function(req, res) {
-        res.render('pages/result');
-    }) ;
+    // dashboard
+    app.get('/dashboard', function(req, res) {
+        res.render('pages/dashboard');
+    });
+    app.get('/dashboard/create_contest', function(req, res) {
+        res.render('pages/create_contest');
+    });
+
+    app.get('/contest', function(req,res) {
+        res.render('pages/contest');
+    })
 
     //----------API BELOW---------
     // For contests

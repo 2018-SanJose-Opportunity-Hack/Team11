@@ -22,48 +22,54 @@ module.exports = {
         });
     },
     create: function(req, res){
-        // User.find({}, function(err, users) {
-        //     if(err){
-        //         console.log('Something went wrong when getting all users');
-        //         res.json({message: 'Error', error: err});
-        //     }else{ 
-        //         function spin(arr) {
-        //             var rand = Math.floor(Math.random() * arr.length);
-        //             var num = numbers[rand];
-        //             numbers.splice(rand,1);
-        //             return num;
-        //         }
-        //         const index_arr  = [];
-        //         for (let i = 0; i < users.length; i++) {
-        //             index_arr.push(i);
-        //         }
+        console.log('----req');
+        console.log(req.body);
+        console.log('----');
 
-        //         const amount = Math.min(req.body.max_winners, users.length);
-        //         const users_won_arr = [];
-        //         for (let j = 0; i < amount; i++) {
-        //             users_won_arr.push(users[spin(index_arr)]);
-        //         }
+        const today = new Date(); 
+        const after_week = new Date(today.getDate() + 7);
+        //const contest = { max_winners: req.body.max_winners, time_period: { start_date: today, end_date: after_week }};
 
-                const today = new Date(); const after_week = new Date();
-                after_week.setDate(today.getDate() + 7);
-                const contest = { 
-                    max_winners: req.body.max_winners,
-                    loser_card: req.body.loser_card,
-                    winner_cards: req.body.winner_cards,
-                    start_date: today,
-                    end_date: after_week,
-                    users_won: req.body.users_won
-                };
-                Contest.create(contest, function(err){
-                    if(err){
-                        console.log('Something went wrong when creating a contest, detail: ', err);
-                        res.json({message: 'Error', error: err});   
-                    }else{
-                        res.redirect('/contests');
-                    }
-                });
-        //     }
-        // });
+        const contest = {
+            max_winners: req.body.max_winners,
+            winner_cards: [
+                { 
+                    title: req.body.winnercard1_title,
+                    content: req.body.winnercard1_content,
+                    img_url: req.body.winnercard1_image,
+                    value: req.body.winnercard1_value
+                },
+                { 
+                    title: req.body.winnercard2_title,
+                    content: req.body.winnercard2_content,
+                    img_url: req.body.winnercard2_image,
+                    value: req.body.winnercard2_value
+                },
+                { 
+                    title: req.body.winnercard3_title,
+                    content: req.body.winnercard3_content,
+                    img_url: req.body.winnercard3_image,
+                    value: req.body.winnercard3_value
+                },
+            ],
+            loser_card: {
+                title: req.body.losercard_title,
+                content: req.body.losercard_content,
+                img_url: req.body.losercard_image,
+            },
+            start_date: new Date(req.body.start_date),
+            end_date: new Date(req.body.end_date),
+        };
+        console.log('contest===');
+        console.log(contest);
+        Contest.create(contest, function(err){
+            if(err){
+                console.log('Something went wrong when creating a contest, detail: ', err);
+                res.json({message: 'Error', error: err});   
+            }else{
+                res.redirect('/contests');
+            }
+        });
     },
     update: function(req, res){
         Contest.findByIdAndUpdate({_id: req.params.id}, {$set: req.body}, { runValidators: true }, function(err){
