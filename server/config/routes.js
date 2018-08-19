@@ -38,6 +38,9 @@ module.exports = function(app) {
     app.get('/metrics', function(req,res) {
         res.render('pages/stats', {title: 'Metrics Baby!'});
     })
+    app.get('/expire', function(req,res){
+        res.render('pages/expire')
+    })
 
     //----------API BELOW---------
     // For contests

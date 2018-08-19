@@ -155,7 +155,7 @@ function ajaxPost(){
                         <input type="text" id="winnercard1_image" name="winnercard1_image" class='col-sm-6' value="<%=data.winner_cards[0].img_url %>">
                     </div>
                     <div class='row'>
-                        <label class='col-sm-5 d-inline'>Gift Amount: </label>
+                        <label class='col-sm-5 d-inline'>Reward Amount: </label>
                         <input type="text" id="winnercard1_value" name="winnercard1_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[0].value %>">
                     </div>
                 </div>
@@ -174,7 +174,7 @@ function ajaxPost(){
                         <input type="text" id="winnercard2_image" name="winnercard2_image" class='col-sm-6' value="<%=data.winner_cards[1].img_url %>">
                     </div>
                     <div class='row'>
-                        <label class='col-sm-5 d-inline'>Gift Amount: </label>
+                        <label class='col-sm-5 d-inline'>Reward Amount: </label>
                         <input type="text" id="winnercard2_value" name="winnercard2_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[1].value %>">
                     </div>
                 </div>
@@ -193,7 +193,7 @@ function ajaxPost(){
                         <input type="text" id="winnercard3_image" name="winnercard3_image" class='col-sm-6' value="<%=data.winner_cards[2].img_url %>">
                     </div>
                     <div class='row'>
-                        <label class='col-sm-5 d-inline'>Gift Amount: </label>
+                        <label class='col-sm-5 d-inline'>Reward Amount: </label>
                         <input type="text" id="winnercard3_value" name="winnercard3_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[2].value %>">
                     </div>
                 </div>
@@ -229,11 +229,9 @@ function ajaxPost(){
         <input type="text" class='col-sm-8' value="http://localhost:3000/contests/<%= data._id %>" id="myInput">
 
         <!-- The button used to copy the text -->
-        <button class="btn text-light" onclick="myFunction()">Copy text</button>
-
-      </div>
-      <div class="modal-footer">
-
+            
+            <button class="btn text-light col-sm-4" onclick="myFunction()">Copy text</button>
+            
       </div>
     </div>
   </div>

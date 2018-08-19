@@ -12,10 +12,16 @@
     </div>
     <div class='col-sm-4 my-5 mx-auto p-4 bg-light text-center'>
         <h5>Login</h5>
-        <form action='/' method='post'>
-            <input type='text' name='login_email' placeholder='email' class='col col-sm-9 mx-auto my-1 p-2 border text-center'>
-            <input type='password' name='login_password' placeholder='password' class='col col-sm-9 mx-auto my-1 p-2 border text-center'>
-            <div class='col-sm-11 mt-1 mb-3 text-right'><button class='btn text-light'>login</button></div>
+        <form action='/' method='post' class='mx-2'>
+            <div class='row text-left'>
+                <label class='col-sm-4'>Email: </label>
+                <input type='text' name='login_email' placeholder='email' class='col mx-auto my-1 p-2 border text-center'>
+            </div>
+            <div class='row text-left'>
+                <label class='col-sm-4'>Password: </label>
+                <input type='password' name='login_password' placeholder='password' class='col mx-auto my-1 p-2 border text-center'>
+            </div>
+            <div class='col-sm-11 mt-1 mt-3'><button class='btn text-light'>login</button></div>
         </form>
     </div>
 </body>

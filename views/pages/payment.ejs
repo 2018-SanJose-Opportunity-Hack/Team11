@@ -15,11 +15,18 @@
 			$( ".card" ).click(function(e) {
 				cardname = $(this).attr('data-cardname');
 				cardtype = $(this).attr('data-cardtype');
-				$.get( "/processpayment?cardname="+cardname+"&cardtype="+cardtype, function( data ) {
-					console.log(data);
-					$('.modal-content').html('<a class="btn modal-body text-light" style="background: #621354" href="'+data+'">Redeem</a>')
+				if (cardname == 'paypal'){
+					$.get( "/paypal", function(data){})
+					$('.modal-title').html('Payment sent to your PayPal account!')
 					$('#exampleModalCenter').modal();
-				});
+				}else{
+					$.get( "/processpayment?cardname="+cardname+"&cardtype="+cardtype, function( data ) {
+						console.log(data);
+						$('.modal-title').html('Click on the button to redeem! <a class="btn mx-1 text-light" style="background: #621354" href="'+data+'">Redeem</a>')
+						$('#exampleModalCenter').modal();
+					});
+					$('.modal-title').html('Processing');
+				}	
 			});
 		});
 	
@@ -34,8 +41,8 @@
 		<h5>Select payment method:</h5>
 		<div class='row mb-3'>
 			<div class='col'>
-				<a href='#' data-cardname="paypal" data-cardtype="paypal" data-target="#exampleModalCenter">
-					<div class="card">
+				<a href='#'>
+					<div class="card" data-cardname="paypal" data-cardtype="paypal" data-target="#exampleModalCenter">
 						<img class="card-img-top" src='https://i.imgur.com/hgugQjp.jpg' alt="Card image cap">
 					</div>
 				</a>
@@ -70,6 +77,12 @@
 		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Payment</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
