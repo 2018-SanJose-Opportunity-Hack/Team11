@@ -1,8 +1,11 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
+app.use(bodyParser.json());
+app.use('/public', express.static('public'));
+
 // set the view engine to ejs
 app.set('view engine', 'ejs');
-app.use('/public', express.static('public'));
 
 require('./server/config/mongoose.js');
 require('./server/config/routes')(app);
