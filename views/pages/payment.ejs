@@ -2,19 +2,80 @@
 <html lang="en">
 
 <head>
-	<% include ../partials/head %>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel='stylesheet' type='text/css' href='/public/css/styles.css'>
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script>
+		$( document ).ready(function() {
+			$( ".card" ).click(function(e) {
+				cardname = $(this).attr('data-cardname');
+				cardtype = $(this).attr('data-cardtype');
+				$.get( "/processpayment?cardname="+cardname+"&cardtype="+cardtype, function( data ) {
+					console.log(data);
+					$('.modal-content').html('<a class="btn modal-body text-light" style="background: #621354" href="'+data+'">Redeem</a>')
+					$('#exampleModalCenter').modal();
+				});
+			});
+		});
+	
+	</script>
 </head>
 
 <body>
-	<h2>Select payment method:</h2>
-	<form>
-		<ul>
-			<li><i class="fab fa-paypal"></i> PayPal</li>
-			<li><i class="fab fa-cc-paypal"></i> PayPal Gift Card</li>
-			<li> Venmo</li>
-		</ul>
-	</form>
-	<a href="">PayPal</a>
+    <div id='nav' class='p-2'>
+        <img id='logo1' src='https://saverlife.earn.org/static/assets/img/essp-pink-logo-white.png' alt='Saver Life'>
+    </div>
+    <div class='col-sm-8 my-5 mx-auto p-4 bg-light'>
+		<h5>Select payment method:</h5>
+		<div class='row mb-3'>
+			<div class='col'>
+				<a href='#' data-cardname="paypal" data-cardtype="paypal" data-target="#exampleModalCenter">
+					<div class="card">
+						<img class="card-img-top" src='https://i.imgur.com/hgugQjp.jpg' alt="Card image cap">
+					</div>
+				</a>
+			</div>
+			<div class='col'>
+				<a href='#'>
+					<div class="card" data-cardname="amazon" data-cardtype="giftcard"  data-target="#exampleModalCenter">
+						<img class="card-img-top" src='https://i.imgur.com/g681Kpr.png' alt="Card image cap">
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col'>
+				<a href='#'>
+					<div class="card" data-cardname="target" data-cardtype="giftcard" data-target="#exampleModalCenter">
+						<img class="card-img-top" src='https://i.imgur.com/d2BZ5sA.png' alt="Card image cap">
+					</div>
+				</a>
+			</div>
+			<div class='col'>
+				<a href='#' class="card" data-cardname="walmart" data-cardtype="giftcard" data-target="#exampleModalCenter">
+					<div class="card">
+						<img class="card-img-top" src='https://i.imgur.com/wcr7yz1.png' alt="Card image cap">
+					</div>
+				</a>
+			</div>
+		</div>
+		
+		
+
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
 </body>
 </html>

@@ -2,20 +2,33 @@ const contests = require('../controllers/contests');
 const users = require('../controllers/users');
 const gyft = require('../controllers/gyft');
 const paypal = require('../controllers/paypal');
+const processpayment = require('../controllers/processpayment');
 
 module.exports = function(app) {
     // login registration page
     app.get('/', function(req, res) {
         res.render('pages/index');
     });
+    app.post('/', function(req, res){
+        users.login(req,res);
+    })
     // about page 
     app.get('/payment', function(req, res) {
         res.render('pages/payment');
     });
     // dashboard
     app.get('/dashboard', function(req, res) {
-        res.render('pages/dashboard', {contests});
+        contests.all_v2(req, res);
     });
+    app.get('/dashboard/contests/:id', function(req, res) {
+        contests.one_v2(req, res);
+    });
+
+    app.get('/dashboard/stats/:id', function(req, res) {
+        contests.stats(req, res);
+    });
+
+
     app.get('/dashboard/create_contest', function(req, res) {
         res.render('pages/create_contest');
     });
@@ -40,7 +53,6 @@ module.exports = function(app) {
     app.get('/expired', function(req, res) {
         res.render('pages/expired');
     });
-
     app.get('/metrics', function(req,res) {
         res.render('pages/metrics', {title: 'Metrics Baby!'});
     })
@@ -56,7 +68,8 @@ module.exports = function(app) {
     app.post('/contests', function(req, res) {
         contests.create(req, res);
     });
-    app.put('/contests/:id', function(req, res) {
+    app.post('/contests/:id', function(req, res) {
+        console.log('here');
         contests.update(req, res);
     });
     app.delete('/contests/:id', function(req, res) {
@@ -69,6 +82,9 @@ module.exports = function(app) {
     // Paypal instant pay
     app.get('/paypal', function (req, res) {
     	paypal.instapay(req, res);
+    });
+    app.get('/processpayment', function (req, res) {
+        processpayment.payout(req, res)
     });
     // For users
     app.get('/users', function(req, res) {

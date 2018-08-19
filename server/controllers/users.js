@@ -59,6 +59,19 @@ module.exports = {
             }
         });
     },
+    login: function(req, res){
+        User.findOne({email: req.body.login_email}, function(err, user){
+            if(err){
+                res.json({message: 'Error', error: err});
+            }else{
+                if (user.password == req.body.login_password){
+                    res.redirect('/dashboard')
+                }else{
+                    res.json({message: 'Error', error: err})
+                }
+            }
+        })
+    },
     make_win: function(req, res){
         Contest.findOne({_id: req.param.id}, function(err, contest) {
             if(err){
