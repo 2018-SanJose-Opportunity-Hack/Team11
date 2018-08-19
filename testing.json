@@ -1,0 +1,21 @@
+{
+	"max_winners": 70,
+	"loser_card": { "img_url": "12345.ggg", "title": "abc", "content": "zzz" },
+	"winnercard1_title": "title1",
+	"winnercard1_content": "content1",
+	"winnercard1_image": "image1",
+	"winnercard1_value": 5,
+	"winnercard2_title": "title2",
+	"winnercard2_content": "content2",
+	"winnercard2_image": "image2",
+	"winnercard2_value": 10,
+	"winnercard3_title": "title3",
+	"winnercard3_content": "content3",
+	"winnercard3_image": "image3",
+	"winnercard3_value": 25,
+	"losercard_title": "titleL",
+	"losercard_content": "contentL",
+	"losercard_image": "imageL",
+	"start_date": "2018-08-18",
+	"end_date": "2018-08-25"
+}
