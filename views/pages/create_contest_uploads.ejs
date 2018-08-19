@@ -16,23 +16,23 @@
         </div>
         <form method="post" enctype="multipart/form-data" action="/contestsuploads">
             <div class=''>
-                <label class='col-sm-5'>Title: </label>
+                <label class='col-sm-3'>Title: </label>
                 <input type="text" name="title" class='col-sm-6'>
             </div>
 
             <div class=''>
-                <label class='col-sm-5'>Max Winners: </label>
+                <label class='col-sm-3'>Max Winners: </label>
                 <input type="text" name="max_winners" class='col-sm-6'>
             </div>
 
             <div class=''>
-                <label class='col-sm-5'>Start Date: </label>
+                <label class='col-sm-3'>Start Date: </label>
                 <input type="datetime-local" id="start_date" name="start_date"
                 value="2018-08-18T08:00"
                 min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6 border'>
             </div>
             <div class=''>
-                <label class='col-sm-5'>End Date: </label>
+                <label class='col-sm-3'>End Date: </label>
                 <input type="datetime-local" id="end_date" name="end_date"
                 value="2018-08-25T08:00"
                 min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6 border'>
@@ -44,8 +44,9 @@
             <input type="hidden" name="losercard_title">
             <input type="hidden" name="losercard_content">
             <div class='col'>
-                <div class='row mb-2'>
-                    <input type="file" name="upl" class="form-control-file">
+                <div class='row mb-2 px-3'>
+                    <label class='d-inline'>Upload Image: </label>
+                    <input type="file" name="upl" class="col form-control-file">
                 </div>
             </div>
 
@@ -56,39 +57,40 @@
             <input type="hidden" name="winnercard1_content">
             
             <div class='col'>
-                <div class='row'>
-                    <label class='col-sm-4 d-inline'>Card 1 Value: </label>
+                <div class='row mb-2 px-3'>
+                    <label class='d-inline'>Upload Image:</label>
+                    <input type="file" name="upl" class="col form-control-file">
+                </div>
+                <div class='row px-3'>
+                    <label class='d-inline mr-2'>Card 1 Value: </label>
                     <input type="text" name="winnercard1_value" class='col-sm-6 d-inline border'>
                 </div>
-                <div class='row mb-2'>
-                    <input type="file" name="upl" class="form-control-file">
-                </div>
-
             </div>
             
             <input type="hidden" name="winnercard2_title"><br>
             <input type="hidden" name="winnercard2_content"><br>
             <div class='col'>
-                <div class='row'>
-                    <label class='col-sm-4 d-inline'>Card 2 Value: </label>
-                    <input type="text" name="winnercard2_value" class='col-sm-6 d-inline border'>
+                <div class='row mb-2 px-3'>
+                    <label class='d-inline'>Upload Image:</label>
+                    <input type="file" name="upl" class="col form-control-file">
                 </div>
-                <div class='row mb-2'>
-                    <input type="file" name="upl" class="form-control-file">
+                <div class='row px-3'>
+                    <label class='d-inline mr-2'>Card 2 Value: </label>
+                    <input type="text" name="winnercard2_value" class='col-sm-6 d-inline border'>
                 </div>
             </div>
             
             <input type="hidden" name="winnercard3_title"><br>
             <input type="hidden" name="winnercard3_content"><br>
             <div class='col'>
-                <div class='row'>
-                    <label class='col-sm-4 d-inline'>Card 3 Value: </label>
+                <div class='row mb-2 px-3'>
+                    <label class='d-inline'>Upload Image:</label>
+                    <input type="file" name="upl" class="col form-control-file">
+                </div>
+                <div class='row px-3'>
+                    <label class='d-inline mr-2'>Card 3 Value: </label>
                     <input type="text" name="winnercard3_value" class='col-sm-6 d-inline border'>
                 </div>
-                <div class='row mb-2'>
-                    <input type="file" name="upl" class="form-control-file">
-                </div>
-
             </div>
             
             <hr>
