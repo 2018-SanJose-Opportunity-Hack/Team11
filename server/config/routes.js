@@ -13,7 +13,6 @@ module.exports = function(app) {
     });
     // dashboard
     app.get('/dashboard', function(req, res) {
-        const contests = contests.all(req, res);
         res.render('pages/dashboard', {contests});
     });
     app.get('/dashboard/create_contest', function(req, res) {
