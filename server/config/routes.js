@@ -20,7 +20,16 @@ module.exports = function(app) {
         res.render('pages/create_contest');
     });
     app.get('/contest', function(req, res) {
-        res.render('pages/contest');
+        res.render('pages/contest', {user: {
+            "_id" : "5b78f727e8c6f04b97a6d10d",
+            "participated" : true,
+            "win" : false,
+            "email" : "nosuchemail@foo.com",
+            "password" : "12345678",
+            "createdAt" : "2018-08-19T04:50:47.820Z",
+            "updatedAt" : "2018-08-19T04:50:47.820Z",
+            "__v" : 0
+        }, contest: req.session.contest, card_mark: 2});
     })
     app.get('/win', function(req, res) {
         res.render('pages/win');

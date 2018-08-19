@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 var app = express();
 var paypal = require('paypal-rest-sdk');
 paypal.configure({
@@ -12,7 +13,7 @@ paypal.configure({
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(session({secret: 'the_secret_key_hehe', resave: false, saveUninitialized: true, cookie: {maxAge : 60000}}));
 app.use('/public', express.static('public'));
 
 require('./server/config/mongoose.js');

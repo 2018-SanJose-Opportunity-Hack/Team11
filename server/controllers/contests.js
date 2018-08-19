@@ -17,7 +17,8 @@ module.exports = {
                 console.log('Something went wrong when getting a single contest');
                 res.json({message: 'Error', error: err});
             }else{
-                res.json({message: 'Success', data: contest});
+                req.session.contest = contest;
+                res.redirect('/contest');
             }
         });
     },
