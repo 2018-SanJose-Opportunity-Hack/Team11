@@ -103,24 +103,24 @@ function ajaxPost(){
         <form method="post" enctype="multipart/form-data" action="/contestsuploads/<%= data._id %>">
             <input type="hidden" id="_id" name="_id" value="<%=data._id %>">
             <div class=''>
-                <label class='col-sm-5'>Title: </label>
+                <label class='col-sm-4'>Title: </label>
                 <input type="text" id="title" name="title" class='col-sm-3' value="<%=data.title %>">
             </div>
 
             <div class=''>
-                <label class='col-sm-5'>Max Winners: </label>
+                <label class='col-sm-4'>Max Winners: </label>
                 <input type="text" id="max_winners" name="max_winners" class='col-sm-3' value="<%=data.max_winners %>">
             </div>
 
             <div class=''>
-                <label class='col-sm-5'>Start Date: </label>
+                <label class='col-sm-4'>Start Date: </label>
                 <input type="datetime-local" id="start_date" name="start_date"
                 value="<%=start_date %>"
                 min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6 border'>
             </div>
 
             <div class=''>
-                <label class='col-sm-5'>End Date: </label>
+                <label class='col-sm-4'>End Date: </label>
                 <input type="datetime-local" id="end_date" name="end_date"
                 value="<%=end_date %>"
                 min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6 border'>
@@ -165,7 +165,7 @@ function ajaxPost(){
                     </div>
                     <div class='row px-3'>
                         <label class='mr-2 d-inline'>Reward Amount: </label>
-                        <input type="text" id="winnercard1_value" name="winnercard1_value" class='col' value="<%=data.winner_cards[0].value %>">
+                        <input type="text" id="winnercard1_value" name="winnercard1_value" class='col-sm-6' value="<%=data.winner_cards[0].value %>">
                     </div>
                 </div>
             </div>
@@ -186,7 +186,7 @@ function ajaxPost(){
                     </div>
                     <div class='row px-3'>
                         <label class='d-inline mr-2'>Reward Amount: </label>
-                        <input type="text" id="winnercard2_value" name="winnercard2_value" class='col' value="<%=data.winner_cards[1].value %>">
+                        <input type="text" id="winnercard2_value" name="winnercard2_value" class='col-sm-6' value="<%=data.winner_cards[1].value %>">
                     </div>
                 </div>
             </div>
@@ -207,7 +207,7 @@ function ajaxPost(){
                     </div>
                     <div class='row px-3'>
                         <label class='d-inline mr-2'>Gift Amount: </label>
-                        <input type="text" id="winnercard3_value" name="winnercard3_value" class='col' value="<%=data.winner_cards[2].value %>">
+                        <input type="text" id="winnercard3_value" name="winnercard3_value" class='col-sm-6' value="<%=data.winner_cards[2].value %>">
                     </div>
                 </div>
             </div>
