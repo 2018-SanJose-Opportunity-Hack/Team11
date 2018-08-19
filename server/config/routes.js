@@ -56,5 +56,8 @@ module.exports = function(app) {
     app.delete('/users/:id', function(req, res) {
         users.remove(req, res);
     });
+    app.put('/users/:id/eli', function(req, res) {
+        users.make_win(req, res);
+    });
 
 }

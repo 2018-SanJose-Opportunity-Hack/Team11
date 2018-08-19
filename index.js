@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-
 var app = express();
 var paypal = require('paypal-rest-sdk');
 paypal.configure({
@@ -10,10 +9,8 @@ paypal.configure({
 });
 
 // set the view engine to ejs
-var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/public', express.static('public'));

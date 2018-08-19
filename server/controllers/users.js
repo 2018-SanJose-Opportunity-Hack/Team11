@@ -1,4 +1,5 @@
 require('../models/user.js');
+require('../models/contest.js');
 
 module.exports = {
     all: function(req, res){
@@ -58,4 +59,19 @@ module.exports = {
             }
         });
     },
+    make_win: function(req, res){
+        Contest.findOne({ _id: req.params.id}, function(err, contest) {
+            if(err){
+                console.log('Something went wrong when getting a single contest');
+                res.json({message: 'Error', error: err});
+            }else{
+                const today = new Date();
+                if (today < contest.start_date || today > contest.end_date) {
+                    res.redirect('/expired');
+                }
+                res.redirect('/win');
+                res.redirect('/lose');
+            }
+        });
+    }
 }
