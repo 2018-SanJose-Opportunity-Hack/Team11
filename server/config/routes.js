@@ -1,5 +1,6 @@
 const contests = require('../controllers/contests');
 const users = require('../controllers/users');
+const gyft = require('../controllers/gyft');
 
 module.exports = function(app) {
     // login registration page
@@ -12,14 +13,27 @@ module.exports = function(app) {
     });
     // dashboard
     app.get('/dashboard', function(req, res) {
-        res.render('pages/dashboard');
+        const contests = contests.all(req, res);
+        res.render('pages/dashboard', {contests});
     });
     app.get('/dashboard/create_contest', function(req, res) {
         res.render('pages/create_contest');
     });
-
-    app.get('/contest', function(req,res) {
+    app.get('/contest', function(req, res) {
         res.render('pages/contest');
+    })
+    app.get('/win', function(req, res) {
+        res.render('pages/win');
+    });
+    app.get('/lose', function(req, res) {
+        res.render('pages/lose');
+    });
+    app.get('/expired', function(req, res) {
+        res.render('pages/expired');
+    });
+
+    app.get('/metrics', function(req,res) {
+        res.render('pages/metrics', {title: 'Metrics Baby!'});
     })
 
     //----------API BELOW---------
@@ -39,7 +53,10 @@ module.exports = function(app) {
     app.delete('/contests/:id', function(req, res) {
         contests.remove(req, res);
     });
-    
+     // Gyft APIs
+    app.get('/gyft', function (req, res) {
+    	gyft.purchaseCard(req, res);
+    });
     // For users
     app.get('/users', function(req, res) {
         users.all(req, res);
@@ -61,3 +78,4 @@ module.exports = function(app) {
     });
 
 }
+
