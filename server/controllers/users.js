@@ -82,8 +82,8 @@ module.exports = {
                 User.findOne({_id: req.body.id}, function(err, user) {
                     const today = new Date();
                     console.log(contest);
-                    if (today < contest.start_date || today > contest.end_date || user.participated ) {
-                        res.redirect(303, '/expired');
+                    if (today < contest.start_date || today > contest.end_date ) { //||user.participated
+                        res.redirect(303, '/expire');
                     } else if(contest.users_won.length > contest.max_winners) {
                         User.findOneAndUpdate({_id: req.body.id}, {$set: {win: false, day: n, hour: h, participated: true}}, { runValidators: true }, function(err){
                             if(err){
