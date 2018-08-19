@@ -5,7 +5,7 @@ UserSchema = new mongoose.Schema({
     day: String,
     hour: Number,
     password: {type: String, required: [true, 'Password cannot be blank!'], minlength: [8, 'Password must be at least 8 characters.']},
-    // participated_contests: [ContestSchema]
+    // participated_contests: [ContestSchema
 }, {timestamps: true});
 mongoose.model('User', UserSchema);
 User = mongoose.model('User');
