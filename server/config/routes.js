@@ -17,9 +17,8 @@ module.exports = function(app) {
     app.get('/dashboard/create_contest', function(req, res) {
         res.render('pages/create_contest');
     });
-
     app.get('/contest', function(req,res) {
-        res.render('pages/contest');
+        res.render('pages/user_contest');
     })
 
     //----------API BELOW---------
