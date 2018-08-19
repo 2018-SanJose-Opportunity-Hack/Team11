@@ -15,26 +15,23 @@
             <a class='btn' href='/dashboard/create_contest'>+ create contest</a>
         </div>
         <h5>Contests</h5>
+
         <div class="card-deck">
-            <div class="card">
-                <img class="card-img-top" src='https://i.imgur.com/QWSFMlb.png' alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">$5 Reward</h5>
+            <% for(let i=0 ; i < data.length ; i++) { %>
+                <div class="card">
+                    <img class="card-img-top" src='https://i.imgur.com/QWSFMlb.png' alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= data[i].title %></h5>
+                        <a href="#" class="btn btn-primary">Manage</a>
+                        <a href="#" class="btn btn-info">Stats</a>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src='https://i.imgur.com/QWSFMlb.png' alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">$10 Reward</h5>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src='https://i.imgur.com/QWSFMlb.png' alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">$25 Reward</h5>
-                </div>
-            </div>
+
+            <% } %>
+
         </div>
+
+
     </div>
 </body>
 

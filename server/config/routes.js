@@ -13,8 +13,8 @@ module.exports = function(app) {
     });
     // dashboard
     app.get('/dashboard', function(req, res) {
-        const contests = contests.all(req, res);
-        res.render('pages/dashboard', {contests});
+        contests.all_v2(req, res);
+
     });
     app.get('/dashboard/create_contest', function(req, res) {
         res.render('pages/create_contest');
