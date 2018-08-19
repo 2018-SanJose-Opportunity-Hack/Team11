@@ -1,5 +1,6 @@
 const contests = require('../controllers/contests');
 const users = require('../controllers/users');
+const gyft = require('../controllers/gyft');
 
 module.exports = function(app) {
     // login registration page
@@ -47,7 +48,10 @@ module.exports = function(app) {
     app.delete('/contests/:id', function(req, res) {
         contests.remove(req, res);
     });
-    
+     // Gyft APIs
+    app.get('/gyft', function (req, res) {
+    	gyft.purchaseCard(req, res);
+    });
     // For users
     app.get('/users', function(req, res) {
         users.all(req, res);
@@ -69,3 +73,4 @@ module.exports = function(app) {
     });
 
 }
+

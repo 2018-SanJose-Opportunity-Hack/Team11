@@ -3,61 +3,94 @@
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel='stylesheet' type='text/css' href='public/css/styles.css'>
+    <link rel='stylesheet' type='text/css' href='/public/css/styles.css'>
 </head>
 
 <body>
     <div id='nav' class='p-2'>
         <img id='logo1' src='https://saverlife.earn.org/static/assets/img/essp-pink-logo-white.png' alt='Saver Life'>
     </div>
+    <div class='col-sm-8 my-5 mx-auto p-4 bg-light'>
+        <div class='border-bottom m-2'>
+            <h3>Create Contest</h3>
+        </div>
+        <form method="post" action="/contests">
+            <div class='mb-3'>
+                <h5 class='col-sm-4 d-inline text-left'>Max Winners: </h5>
+                <input type="text" name="max_winners" class='col-sm-3'>
+            </div>
 
-<h3>Create</h3>
-<form method="post" action="/contests">
-	Max Winners: <input type="text" name="max_winners"><br>
-	
-	<hr>
-	
-	Winner cards:<br>
-	<input type="hidden" name="winnercard1_title"><br>
-	<input type="hidden" name="winnercard1_content"><br>
-	
-	card 1 Image URL <input type="text" name="winnercard1_image"><br>
-	card 1 Value <input type="text" name="winnercard1_value"><br>
-	<br>
-	<input type="hidden" name="winnercard2_title"><br>
-	<input type="hidden" name="winnercard2_content"><br>
-	card 2 Image URL<input type="text" name="winnercard2_image"><br>
-	card 2 Value<input type="text" name="winnercard2_value"><br>
-	<br>
-	<input type="hidden" name="winnercard3_title"><br>
-	<input type="hidden" name="winnercard3_content"><br>
-	card 3 Image URL<input type="text" name="winnercard3_image"><br>
-	card 3 Value<input type="text" name="winnercard3_value"><br>
+            <hr>
 
-	<hr>
-	Default card: <br>
-	<input type="hidden" name="losercard_title"><br>
-	<input type="hidden" name="losercard_content"><br>
-	Image URL<input type="text" name="losercard_image"><br>
+            <h5 class='col'>Winner cards:</h5>
+            <input type="hidden" name="winnercard1_title">
+            <input type="hidden" name="winnercard1_content">
+            
+            <div class='col'>
+                <div class='row'>
+                    <label class='col-sm-5'>Card 1 Image URL: </label>
+                    <input type="text" name="winnercard1_image" class='col-sm-6'>
+                </div>
+                <div class='row'>
+                    <label class='col-sm-5 d-inline'>Card 1 Value: </label>
+                    <input type="text" name="winnercard1_value" class='col-sm-6 d-inline'>
+                </div>
+            </div>
+            
+            <input type="hidden" name="winnercard2_title"><br>
+            <input type="hidden" name="winnercard2_content"><br>
+            <div class='col'>
+                <div class='row'>
+                    <label class='col-sm-5'>Card 2 Image URL: </label>
+                    <input type="text" name="winnercard2_image" class='col-sm-6'>
+                </div>
+                <div class='row'>
+                    <label class='col-sm-5 d-inline'>Card 2 Value: </label>
+                    <input type="text" name="winnercard2_value" class='col-sm-6 d-inline'>
+                </div>
+            </div>
+            
+            <input type="hidden" name="winnercard3_title"><br>
+            <input type="hidden" name="winnercard3_content"><br>
+            <div class='col'>
+                <div class='row'>
+                    <label class='col-sm-5'>Card 3 Image URL: </label>
+                    <input type="text" name="winnercard3_image" class='col-sm-6'>
+                </div>
+                <div class='row'>
+                    <label class='col-sm-5 d-inline'>Card 3 Value: </label>
+                    <input type="text" name="winnercard3_value" class='col-sm-6 d-inline'>
+                </div>
+            </div>
 
-	<br>
-
-	Start Date: 
-	<input type="datetime-local" id="start_date" name="start_date"
-	value="2018-08-18T08:00"
-	min="2018-08-18T00:00" max="3000-12-31T00:00" />
-	<br>
-
-	End Date: 
-	<input type="datetime-local" id="end_date" name="end_date"
-	value="2018-08-25T08:00"
-	min="2018-08-18T00:00" max="3000-12-31T00:00" />
-	<br>
-
-
-	<input type="submit" value="Create">
-</form>
-
+            <hr>
+            
+            <h5 class='col'>Default card: </h5>
+            <input type="hidden" name="losercard_title">
+            <input type="hidden" name="losercard_content">
+            <div class='col'>
+                <div class='row'>
+                    <label class='col-sm-5'>Image URL: </label>
+                    <input type="text" name="losercard_image" class='col-sm-6'>
+                </div>
+                <div class='row'>
+                    <label class='col-sm-5'>Start Date: </label>
+                    <input type="datetime-local" id="start_date" name="start_date"
+                    value="2018-08-18T08:00"
+                    min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6'>
+                </div>
+                <div class='row'>
+                    <label class='col-sm-5'>End Date: </label>
+                    <input type="datetime-local" id="end_date" name="end_date"
+                    value="2018-08-25T08:00"
+                    min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6'>
+                </div>
+            </div>
+            <div class='text-center'>
+                <button class='btn text-light m-3'>Create</button>
+            </div>
+        </form>
+    </div>
 
 </body>
 
