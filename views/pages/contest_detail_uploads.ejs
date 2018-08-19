@@ -132,11 +132,10 @@ function ajaxPost(){
                     <img src='/public/uploads/<%=data.loser_card.img_url %>' style='width:100px'>
                 </div>
                 <div class='col'>
-                    <div class='row'>
-                        <label class='col-sm-4'>Image URL: </label>
+                    <div class='row px-2'>
+                        <label class='d-inline'>Upload Image: </label>
                         <input type="hidden" id="losercard_image" name="losercard_image" class='col-sm-7' value="<%=data.loser_card.img_url %>">
-
-                        <input type="file" name="upl" class="form-control-file">
+                        <input type="file" name="upl" class="col form-control-file">
                     </div>
                 </div>
             </div>
@@ -152,15 +151,15 @@ function ajaxPost(){
                     <img src='/public/uploads/<%=data.winner_cards[0].img_url %>' style='width:100px'>
                 </div>
                 <div class='col'>
-                    <div class='row mb-2'>
-                        <label class='col-sm-5'>Card 1 </label>
-                        <input type="hidden" id="winnercard1_image" name="winnercard1_image" class='col-sm-6' value="<%=data.winner_cards[0].img_url %>">
-
-                        <input type="file" name="upl" class="form-control-file">
+                    <h6>Card 1 </h6>
+                    <div class='row mb-2 px-3'>
+                        <label class='d-inline'>Upload Image:</label>
+                        <input type="hidden" id="winnercard1_image" name="winnercard1_image" value="<%=data.winner_cards[0].img_url %>">
+                        <input type="file" name="upl" class="col form-control-file">
                     </div>
-                    <div class='row'>
-                        <label class='col-sm-5 d-inline'>Gift Amount: </label>
-                        <input type="text" id="winnercard1_value" name="winnercard1_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[0].value %>">
+                    <div class='row px-3'>
+                        <label class='mr-2 d-inline'>Reward Amount: </label>
+                        <input type="text" id="winnercard1_value" name="winnercard1_value" class='col' value="<%=data.winner_cards[0].value %>">
                     </div>
                 </div>
             </div>
@@ -173,15 +172,15 @@ function ajaxPost(){
                     <img src='/public/uploads/<%=data.winner_cards[1].img_url %>' style='width:100px'>
                 </div>
                 <div class='col'>
-                    <div class='row mb-2'>
-                        <label class='col-sm-5'>Card 2 </label>
-                        <input type="hidden" id="winnercard2_image" name="winnercard2_image" class='col-sm-6' value="<%=data.winner_cards[1].img_url %>">
-
-                        <input type="file" name="upl" class="form-control-file">
+                    <h6>Card 2</h6>
+                    <div class='row mb-2 px-3'>
+                        <label class='d-inline'>Upload Image: </label>
+                        <input type="hidden" id="winnercard2_image" name="winnercard2_image" value="<%=data.winner_cards[1].img_url %>">
+                        <input type="file" name="upl" class='col' class="form-control-file">
                     </div>
-                    <div class='row'>
-                        <label class='col-sm-5 d-inline'>Gift Amount: </label>
-                        <input type="text" id="winnercard2_value" name="winnercard2_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[1].value %>">
+                    <div class='row px-3'>
+                        <label class='d-inline mr-2'>Reward Amount: </label>
+                        <input type="text" id="winnercard2_value" name="winnercard2_value" class='col' value="<%=data.winner_cards[1].value %>">
                     </div>
                 </div>
             </div>
@@ -194,15 +193,15 @@ function ajaxPost(){
                     <img src='/public/uploads/<%=data.winner_cards[2].img_url %>' style='width:100px'>
                 </div>
                 <div class='col'>
-                    <div class='row'>
-                        <label class='col-sm-5'>Card 3 </label>
-                        <input type="hidden" id="winnercard3_image" name="winnercard3_image" class='col-sm-6' value="<%=data.winner_cards[2].img_url %>">
-
-                        <input type="file" name="upl" class="form-control-file">
+                    <h6>Card 3</h6>
+                    <div class='row mb-2 px-3'>
+                        <label class='d-inline'>Upload Image: </label>
+                        <input type="hidden" id="winnercard3_image" name="winnercard3_image" value="<%=data.winner_cards[2].img_url %>">
+                        <input type="file" name="upl" class='col' class="form-control-file">
                     </div>
-                    <div class='row'>
-                        <label class='col-sm-5 d-inline'>Gift Amount: </label>
-                        <input type="text" id="winnercard3_value" name="winnercard3_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[2].value %>">
+                    <div class='row px-3'>
+                        <label class='d-inline mr-2'>Gift Amount: </label>
+                        <input type="text" id="winnercard3_value" name="winnercard3_value" class='col' value="<%=data.winner_cards[2].value %>">
                     </div>
                 </div>
             </div>
