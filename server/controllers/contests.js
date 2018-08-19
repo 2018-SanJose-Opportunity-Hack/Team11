@@ -11,6 +11,18 @@ module.exports = {
             }
         });
     },
+    all_v2: function(req, res){
+        Contest.find({}).sort('createdAt').exec(function(err, contests){
+            if(err){
+                console.log('Something went wrong when getting all contests');
+                return({message: 'Error', error: err});
+            }else{
+                console.log(contests)
+                // return({message: 'Success', data: contests});
+                res.render('pages/dashboard', {message: 'Success', data: contests});
+            }
+        });
+    },
     one: function(req, res){
         Contest.findOne({_id: req.params.id}, function(err, contest){
             if(err){
@@ -21,9 +33,42 @@ module.exports = {
             }
         });
     },
+    one_v2: function(req, res){
+        Contest.findOne({_id: req.params.id}, function(err, contest){
+            if(err){
+                console.log('Something went wrong when getting a single contest');
+                res.json({message: 'Error', error: err});
+            }else{
+                var start_date = new Date(contest.start_date);
+                var end_date = new Date(contest.end_date);
+
+                // console.log("ori start_date=" + contest.start_date);
+                // console.log('end_date=' + end_date.toISOString());
+                // console.log('end_date split=' + end_date.toISOString().split(".")[0]);
+
+                start_date = start_date.toISOString().split(".")[0];
+                end_date = end_date.toISOString().split(".")[0];
+
+                // console.log('---contest=' + contest);
+                res.render('pages/contest_detail', {message: 'Success', data: contest, start_date, end_date});
+            }
+        });
+    },
+    stats: function(req, res){
+        Contest.findOne({_id: req.params.id}, function(err, contest){
+            if(err){
+                console.log('Something went wrong when getting a single contest');
+                res.json({message: 'Error', error: err});
+            }else{
+                res.render('pages/metrics', {message: 'Success', data: contest });
+            }
+        });
+    },
     create: function(req, res){
-        console.log('----req');
-        console.log(req.body);
+        console.log('----req.body.start_date');
+        console.log(req.body.start_date);
+        console.log('----req.body.end_date');
+        console.log(req.body.end_date);
         console.log('----');
 
         const today = new Date(); 
@@ -31,6 +76,7 @@ module.exports = {
         //const contest = { max_winners: req.body.max_winners, time_period: { start_date: today, end_date: after_week }};
 
         const contest = {
+            title: req.body.title,
             max_winners: req.body.max_winners,
             winner_cards: [
                 { 
@@ -72,12 +118,47 @@ module.exports = {
         });
     },
     update: function(req, res){
-        Contest.findByIdAndUpdate({_id: req.params.id}, {$set: req.body}, { runValidators: true }, function(err){
+
+        const contest = {
+            title: req.body.title,
+            max_winners: req.body.max_winners,
+            winner_cards: [
+                { 
+                    title: req.body.winnercard1_title,
+                    content: req.body.winnercard1_content,
+                    img_url: req.body.winnercard1_image,
+                    value: req.body.winnercard1_value
+                },
+                { 
+                    title: req.body.winnercard2_title,
+                    content: req.body.winnercard2_content,
+                    img_url: req.body.winnercard2_image,
+                    value: req.body.winnercard2_value
+                },
+                { 
+                    title: req.body.winnercard3_title,
+                    content: req.body.winnercard3_content,
+                    img_url: req.body.winnercard3_image,
+                    value: req.body.winnercard3_value
+                },
+            ],
+            loser_card: {
+                title: req.body.losercard_title,
+                content: req.body.losercard_content,
+                img_url: req.body.losercard_image,
+            },
+            start_date: new Date(req.body.start_date),
+            end_date: new Date(req.body.end_date),
+        };
+
+        Contest.findByIdAndUpdate({_id: req.params.id}, {$set: contest}, { runValidators: true }, function(err){
             if(err){
                 console.log('Something went wrong when updating a contest, detail: ', err);
                 res.json({message: 'Error', error: err});
             }else{
-                res.redirect(303, '/contests');
+                console.log('Update Successful!');
+                // res.redirect(303, '/contests');
+                res.json({message: 'Update Successful!'});
             }
         });
     },
