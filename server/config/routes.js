@@ -17,7 +17,7 @@ var upload = multer({storage: multer.diskStorage({
   
   fileFilter: function(req, file, callback) {
     var ext = path.extname(file.originalname)
-    if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+    if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg' && ext !== '.csv') {
       return callback(/*res.end('Only images are allowed')*/ null, false)
     }
     callback(null, true)
@@ -57,6 +57,11 @@ module.exports = function(app) {
         res.render('pages/create_contest_uploads');
     });
 
+    app.get('/dashboard/mail', function(req, res) {
+        res.render('pages/mail');
+    });
+
+
     app.get('/contest', function(req, res) {
         console.log(req.session.user);
         res.render('pages/contest', {user: req.session.user, contest: req.session.contest, card_mark: 2});
@@ -95,6 +100,15 @@ module.exports = function(app) {
         contests.updateuploads(req, res);
     });
     //----
+
+    // sending mails
+    app.post('/sendingmail', upload.any(), function(req, res) {
+        console.log('-------- /sendingmail');
+        console.log(req.files);
+
+        contests.sendingmail(req, res);
+    });
+
 
     app.post('/contests/:id', function(req, res) {
         console.log('here');
