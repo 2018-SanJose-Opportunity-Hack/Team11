@@ -203,7 +203,7 @@ function ajaxPost(){
             
             <div class='text-center'>
                 <!-- Button trigger modal -->
-                <button id="generateLink" type="button" class="btn btn-lg text-light" data-toggle="modal" data-target="#exampleModal">
+                <button id="generateLink" type="button" class="btn btn-lg text-light" data-toggle="modal" data-target="#exampleModal" onclick="getHost()">
                   Generate Contest Link
                 </button>
 
@@ -226,7 +226,7 @@ function ajaxPost(){
       <div class="modal-body">
         
         <!-- The text field -->
-        <input type="text" class='col-sm-8' value="http://localhost:3000/contests/<%= data._id %>" id="myInput">
+        <input type="text" class='col-sm-8' value="" id="myInput">
 
         <!-- The button used to copy the text -->
             
@@ -251,6 +251,12 @@ function ajaxPost(){
 
     /* Alert the copied text */
     console.log("Copied the text: " + copyText.value);
+  }
+
+  function getHost() {
+      var x = location.hostname + ':' + location.port;
+      var add = x + '/contests/<%= data._id %>';
+      document.getElementById("myInput").value = add;
   }
 </script>
 
