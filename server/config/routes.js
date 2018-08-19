@@ -36,7 +36,7 @@ module.exports = function(app) {
         res.render('pages/contest', {user: {
             "_id" : "5b78f727e8c6f04b97a6d10d",
             "participated" : true,
-            "win" : false,
+            "win" : true,
             "email" : "nosuchemail@foo.com",
             "password" : "12345678",
             "createdAt" : "2018-08-19T04:50:47.820Z",
