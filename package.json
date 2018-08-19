@@ -11,6 +11,10 @@
   "dependencies": {
     "ejs": "^2.4.1",
     "express": "^4.13.4",
-    "mongoose": "^5.2.9"
+    "gyft": "^1.0.0",
+    "http": "0.0.0",
+    "mongoose": "^5.2.9",
+    "querystring": "^0.2.0",
+    "supervisor": "^0.12.0"
   }
 }
