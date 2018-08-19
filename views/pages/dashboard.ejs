@@ -11,31 +11,30 @@
         <img id='logo1' src='https://saverlife.earn.org/static/assets/img/essp-pink-logo-white.png' alt='Saver Life'>
     </div>
     <div class='col-sm-8 my-5 mx-auto p-4 bg-light'>
-        <div class='border-bottom m-2'>
-            <a class='btn' href='/dashboard/create_contest'>+ create contest</a>
+        <div class='text-right'>
+            <button class='btn'><a class='text-light' href='/dashboard/create_contest'>+ Create Contest</a></button>
         </div>
-        <h5>Contests</h5>
+        <h4 class='mx-2'>Contests</h4>
+        <% for(let i=0 ; i < data.length ; i++) { %>
 
-        <div class="card-deck">
-<<<<<<< HEAD
-           
-=======
-            <% for(let i=0 ; i < data.length ; i++) { %>
-                <div class="card">
-                    <img class="card-img-top" src='https://i.imgur.com/QWSFMlb.png' alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= data[i].title %></h5>
-                        <a href="/dashboard/contests/<%=data[i]._id %>" class="btn btn-primary">Manage</a>
-                        <a href="/dashboard/stats/<%=data[i]._id %>" class="btn btn-info">Stats</a>
+            <div class="row m-2 border border-dark" style='background: white'>
+                <div class='col-sm-3 p-0'><img src='https://i.imgur.com/QWSFMlb.png' style='height:75px'></div>
+                <div class='col py-3'>
+                    <h6><%= data[i].title %>: </h6>
+                    <div style='font-size: 10px'>
+                        <%= (new Date(data[i].start_date)).toDateString() %> - <%= (new Date(data[i].end_date)).toDateString() %>
                     </div>
                 </div>
+                <div class='col py-3 text-right'>
+                    <div class='my-2'>
+                        <a href="/dashboard/contests/<%=data[i]._id %>" class='col border-right border-dark'><small>Manage</small></a>
+                        <a href="/dashboard/stats/<%=data[i]._id %>" class='col'><small>Stats</small></a> 
+                    </div>
+                </div>
+            </div>
 
-            <% } %>
-
->>>>>>> ddbd29494b78d024a4420f8b8b0597becdf84785
+        <% } %>
         </div>
-
-
     </div>
 </body>
 
