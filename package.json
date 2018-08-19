@@ -9,12 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
-    "gyft": "^1.0.0",
-    "http": "0.0.0",
+    "https": "^1.0.0",
     "mongoose": "^5.2.9",
+    "paypal-rest-sdk": "^1.8.1",
     "querystring": "^0.2.0",
-    "supervisor": "^0.12.0"
+    "http": "0.0.0"
   }
 }
