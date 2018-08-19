@@ -204,7 +204,7 @@ function ajaxPost(){
             
             <div class='text-center'>
                 <!-- Button trigger modal -->
-                <button id="generateLink" type="button" class="btn btn-lg text-light" data-toggle="modal" data-target="#exampleModal">
+                <button id="generateLink" type="button" class="btn btn-lg text-light" data-toggle="modal" data-target="#exampleModal" onclick="getHost()">
                   Generate Contest Link
                 </button>
 
@@ -262,6 +262,7 @@ function ajaxPost(){
       }
       
       var add = x + '/contests/<%= data._id %>';
+      console.log(add);
       document.getElementById("myInput").value = add;
   }
 </script>
