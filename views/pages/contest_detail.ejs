@@ -5,11 +5,81 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel='stylesheet' type='text/css' href='/public/css/styles.css'>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
-  $(document).
+$( document ).ready(function() {
+	
+	// $("#generateLink").click(function(){
+  //   event.preventDefault();
+
+  //   console.log("generateLink");
+
+	//   var _id=$("#_id").val();
+	//   var title=$("#title").val();
+  //   var start_date = $("#start_date").val();
+  //   var end_date = $("#end_date").val();
+    
+	//   $.post("http://localhost:3000/contests/" + _id,{title: title,start_date: start_date, end_date: end_date}, function(data){
+  //     console.log("done");
+	//   });
+	// });
+
+  	$("#generateLink").click(function(event){
+      event.preventDefault();
+      console.log("generateLink");
+      ajaxPost();
+    });
+
+	// GET REQUEST
+	// $("#allCustomers").click(function(event){
+	// 	event.preventDefault();
+	// 	ajaxGet();
+	// });
+	
+function ajaxPost(){
+    	
+    	// PREPARE FORM DATA
+    	var formData = {
+    		_id : $("#_id").val(),
+    		title :  $("#title").val(),
+        max_winners: $("#max_winners").val(),
+        start_date: $("#start_date").val(),
+        end_date: $("#end_date").val(),
+        losercard_image: $("#losercard_image").val(),
+        winnercard1_image: $("#winnercard1_image").val(),
+        winnercard1_value: $("#winnercard1_value").val(),
+        winnercard2_image: $("#winnercard2_image").val(),
+        winnercard2_value: $("#winnercard2_value").val(),
+        winnercard3_image: $("#winnercard3_image").val(),
+        winnercard3_value: $("#winnercard3_value").val(),
+    	}
+    	
+    	// DO POST
+    	jQuery.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/contests/"+formData._id,
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			success : function(customer) {
+				// $("#postResultDiv").html("<p>" + 
+				// 	"Post Successfully! <br>" +
+				// 	"--->" + JSON.stringify(customer)+ "</p>"); 
+        console.log("DONE");
+			},
+			error : function(e) {
+				alert("Error!")
+				console.log("ERROR: ", e);
+			}
+		});
+    	
+
+    }
+
+})
 
 </script>
 </head>
@@ -24,14 +94,15 @@
         </div>
 
         <form method="post" action="/contests/<%= data._id %>">
+            <input type="hidden" id="_id" name="_id" value="<%=data._id %>">
             <div class='mb-3'>
                 <label class='col-sm-5'>Title: </label>
-                <input type="text" name="title" class='col-sm-3' value="<%=data.title %>">
+                <input type="text" id="title" name="title" class='col-sm-3' value="<%=data.title %>">
             </div>
 
             <div class='mb-3'>
                 <label class='col-sm-5'>Max Winners: </label>
-                <input type="text" name="max_winners" class='col-sm-3' value="<%=data.max_winners %>">
+                <input type="text" id="max_winners" name="max_winners" class='col-sm-3' value="<%=data.max_winners %>">
             </div>
 
             <div class='mb-3'>
@@ -59,7 +130,7 @@
 
                 <div class='row'>
                     <label class='col-sm-5'>Image URL: </label>
-                    <input type="text" name="losercard_image" class='col-sm-6' value="<%=data.loser_card.img_url %>">
+                    <input type="text" id="losercard_image" name="losercard_image" class='col-sm-6' value="<%=data.loser_card.img_url %>">
                 </div>
             </div>
 
@@ -74,11 +145,11 @@
               <div class='row'>
               
                   <label class='col-sm-5'>Card 1 Image URL: </label>
-                  <input type="text" name="winnercard1_image" class='col-sm-6' value="<%=data.winner_cards[0].img_url %>">
+                  <input type="text" id="winnercard1_image" name="winnercard1_image" class='col-sm-6' value="<%=data.winner_cards[0].img_url %>">
               </div>
               <div class='row'>
                   <label class='col-sm-5 d-inline'>Card 1 Value: </label>
-                  <input type="text" name="winnercard1_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[0].value %>">
+                  <input type="text" id="winnercard1_value" name="winnercard1_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[0].value %>">
               </div>
             </div>
             
@@ -89,11 +160,11 @@
 
                 <div class='row'>
                     <label class='col-sm-5'>Card 2 Image URL: </label>
-                    <input type="text" name="winnercard2_image" class='col-sm-6' value="<%=data.winner_cards[1].img_url %>">
+                    <input type="text" id="winnercard2_image" name="winnercard2_image" class='col-sm-6' value="<%=data.winner_cards[1].img_url %>">
                 </div>
                 <div class='row'>
                     <label class='col-sm-5 d-inline'>Card 2 Value: </label>
-                    <input type="text" name="winnercard2_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[1].value %>">
+                    <input type="text" id="winnercard2_value" name="winnercard2_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[1].value %>">
                 </div>
             </div>
             
@@ -104,21 +175,19 @@
 
                 <div class='row'>
                     <label class='col-sm-5'>Card 3 Image URL: </label>
-                    <input type="text" name="winnercard3_image" class='col-sm-6' value="<%=data.winner_cards[2].img_url %>">
+                    <input type="text" id="winnercard3_image" name="winnercard3_image" class='col-sm-6' value="<%=data.winner_cards[2].img_url %>">
                 </div>
                 <div class='row'>
                     <label class='col-sm-5 d-inline'>Card 3 Value: </label>
-                    <input type="text" name="winnercard3_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[2].value %>">
+                    <input type="text" id="winnercard3_value" name="winnercard3_value" class='col-sm-6 d-inline' value="<%=data.winner_cards[2].value %>">
                 </div>
             </div>
 
             <hr>
             
             <div class='text-center'>
-                <button type="submit" class='btn btn-lg text-light m-3'>Update</button>
-
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-lg text-light" data-toggle="modal" data-target="#exampleModal">
+                <button id="generateLink" type="button" class="btn btn-lg text-light" data-toggle="modal" data-target="#exampleModal">
                   Generate Contest Link
                 </button>
 

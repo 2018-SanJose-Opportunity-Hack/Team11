@@ -158,6 +158,7 @@ module.exports = {
             }else{
                 console.log('Update Successful!');
                 // res.redirect(303, '/contests');
+                res.json({message: 'Update Successful!'});
             }
         });
     },
