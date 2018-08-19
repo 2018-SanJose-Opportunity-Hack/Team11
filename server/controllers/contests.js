@@ -51,7 +51,8 @@ module.exports = {
                 end_date = end_date.toISOString().split(".")[0];
 
                 // console.log('---contest=' + contest);
-                res.render('pages/contest_detail', {message: 'Success', data: contest, start_date, end_date});
+                console.log(req.session.user);
+                res.render('pages/contest_detail', {message: 'Success', data: contest, start_date, end_date, user: req.session.user });
             }
         });
     },

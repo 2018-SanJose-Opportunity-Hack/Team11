@@ -33,26 +33,8 @@ module.exports = function(app) {
         res.render('pages/create_contest');
     });
     app.get('/contest', function(req, res) {
-        res.render('pages/contest', {user: {
-            "_id" : "5b78f727e8c6f04b97a6d10d",
-            "participated" : true,
-            "win" : true,
-            "email" : "nosuchemail@foo.com",
-            "password" : "12345678",
-            "createdAt" : "2018-08-19T04:50:47.820Z",
-            "updatedAt" : "2018-08-19T04:50:47.820Z",
-            "__v" : 0
-        }, contest: req.session.contest, card_mark: 2});
+        res.render('pages/contest', {user: req.session.user, contest: req.session.contest, card_mark: 2});
     })
-    app.get('/win', function(req, res) {
-        res.render('pages/win');
-    });
-    app.get('/lose', function(req, res) {
-        res.render('pages/lose');
-    });
-    app.get('/expired', function(req, res) {
-        res.render('pages/expired');
-    });
     app.get('/metrics', function(req,res) {
         res.render('pages/stats', {title: 'Metrics Baby!'});
     })
@@ -63,7 +45,10 @@ module.exports = function(app) {
         contests.all(req, res);
     });
     app.get('/contests/:id', function(req, res) {
-        contests.one(req, res);
+        //contests.one(req, res);
+        console.log('came here');
+        req.body = { id: "5b790b28ad668b1e4e5174d4" }
+        users.make_win(req, res);
     });
     app.post('/contests', function(req, res) {
         contests.create(req, res);

@@ -65,6 +65,7 @@ module.exports = {
                 res.json({message: 'Error', error: err});
             }else{
                 if (user.password == req.body.login_password){
+                    req.session.user = user._id;
                     res.redirect('/dashboard')
                 }else{
                     res.json({message: 'Error', error: err})
@@ -73,7 +74,7 @@ module.exports = {
         })
     },
     make_win: function(req, res){
-        Contest.findOne({_id: req.param.id}, function(err, contest) {
+        Contest.findOne({_id: req.params.id}, function(err, contest) {
             if(err){
                 console.log('Something went wrong when getting a single contest');
                 res.json({message: 'Error', error: err});
@@ -89,7 +90,9 @@ module.exports = {
                                 console.log('Something went wrong when updating a user, detail: ', err);
                                 res.json({message: 'Error', error: err});
                             }else{
-                                res.redirect(303, '/lose');
+                                req.session.user = user;
+                                req.session.contest = contest;
+                                res.redirect(303, '/contest');
                             }
                         }); 
                     }
@@ -106,7 +109,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 } 
@@ -125,7 +130,9 @@ module.exports = {
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
                                                 }else{
-                                                    res.redirect(303, '/win');
+                                                    req.session.user = user;
+                                                    req.session.contest = contest;
+                                                    res.redirect(303, '/contest');
                                                 }
                                             }); 
                                         }
@@ -136,7 +143,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 }
@@ -155,7 +164,9 @@ module.exports = {
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
                                                 }else{
-                                                    res.redirect(303, '/win');
+                                                    req.session.user = user;
+                                                    req.session.contest = contest;
+                                                    res.redirect(303, '/contest');
                                                 }
                                             }); 
                                         }
@@ -166,7 +177,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 }
@@ -185,7 +198,9 @@ module.exports = {
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
                                                 }else{
-                                                    res.redirect(303, '/win');
+                                                    req.session.user = user;
+                                                    req.session.contest = contest;
+                                                    res.redirect(303, '/contest');
                                                 }
                                             }); 
                                         }
@@ -196,7 +211,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 }
@@ -211,7 +228,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 }                               
@@ -230,7 +249,9 @@ module.exports = {
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
                                                 }else{
-                                                    res.redirect(303, '/win');
+                                                    req.session.user = user;
+                                                    req.session.contest = contest;
+                                                    res.redirect(303, '/contest');
                                                 }
                                             }); 
                                         }
@@ -241,7 +262,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 }
@@ -260,7 +283,9 @@ module.exports = {
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
                                                 }else{
-                                                    res.redirect(303, '/win');
+                                                    req.session.user = user;
+                                                    req.session.contest = contest;
+                                                    res.redirect(303, '/contest');
                                                 }
                                             }); 
                                         }
@@ -271,7 +296,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 }
@@ -290,7 +317,9 @@ module.exports = {
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
                                                 }else{
-                                                    res.redirect(303, '/win');
+                                                    req.session.user = user;
+                                                    req.session.contest = contest;
+                                                    res.redirect(303, '/contest');
                                                 }
                                             }); 
                                         }
@@ -301,7 +330,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 }
@@ -317,7 +348,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 } 
@@ -336,7 +369,9 @@ module.exports = {
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
                                                 }else{
-                                                    res.redirect(303, '/win');
+                                                    req.session.user = user;
+                                                    req.session.contest = contest;
+                                                    res.redirect(303, '/contest');
                                                 }
                                             }); 
                                         }
@@ -347,7 +382,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 }
@@ -366,7 +403,9 @@ module.exports = {
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
                                                 }else{
-                                                    res.redirect(303, '/win');
+                                                    req.session.user = user;
+                                                    req.session.contest = contest;
+                                                    res.redirect(303, '/contest');
                                                 }
                                             }); 
                                         }
@@ -377,7 +416,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 }
@@ -396,7 +437,9 @@ module.exports = {
                                                     console.log('Something went wrong when updating a user, detail: ', err);
                                                     res.json({message: 'Error', error: err});
                                                 }else{
-                                                    res.redirect(303, '/win');
+                                                    req.session.user = user;
+                                                    req.session.contest = contest;
+                                                    res.redirect(303, '/contest');
                                                 }
                                             }); 
                                         }
@@ -407,7 +450,9 @@ module.exports = {
                                             console.log('Something went wrong when updating a user, detail: ', err);
                                             res.json({message: 'Error', error: err});
                                         }else{
-                                            res.redirect(303, '/lose');
+                                            req.session.user = user;
+                                            req.session.contest = contest;
+                                            res.redirect(303, '/contest');
                                         }
                                     }); 
                                 }
@@ -416,8 +461,8 @@ module.exports = {
                         //------------------------------------------------
                     }
                 });
-                // res.redirect('/win');
-                // res.redirect('/lose');
+                // res.redirect('/contest');
+                // res.redirect('/contest');
             }
         });
     }
