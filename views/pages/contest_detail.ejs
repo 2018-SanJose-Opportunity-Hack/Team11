@@ -31,6 +31,7 @@ $( document ).ready(function() {
   	$("#generateLink").click(function(event){
       event.preventDefault();
       console.log("generateLink");
+      getHost();
       ajaxPost();
     });
 
@@ -80,7 +81,7 @@ function ajaxPost(){
 
     }
 
-})
+});
 
 </script>
 </head>
@@ -203,7 +204,7 @@ function ajaxPost(){
             
             <div class='text-center'>
                 <!-- Button trigger modal -->
-                <button id="generateLink" type="button" class="btn btn-lg text-light" data-toggle="modal" data-target="#exampleModal" onclick="getHost()">
+                <button id="generateLink" type="button" class="btn btn-lg text-light" data-toggle="modal" data-target="#exampleModal">
                   Generate Contest Link
                 </button>
 
@@ -254,8 +255,7 @@ function ajaxPost(){
   }
 
   function getHost() {
-      var x = location.hostname + ':' + location.port;
-      var add = x + '/contests/<%= data._id %>';
+      var add = location.origin + '/contests/<%= data._id %>';
       document.getElementById("myInput").value = add;
   }
 </script>
