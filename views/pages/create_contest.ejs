@@ -16,18 +16,43 @@
         </div>
         <form method="post" action="/contests">
             <div class='mb-3'>
-                <h5 class='col-sm-4 d-inline text-left'>Title: </h5>
-                <input type="text" name="title" class='col-sm-3'>
+                <label class='col-sm-5'>Title: </label>
+                <input type="text" name="title" class='col-sm-6'>
             </div>
 
             <div class='mb-3'>
-                <h5 class='col-sm-4 d-inline text-left'>Max Winners: </h5>
-                <input type="text" name="max_winners" class='col-sm-3'>
+                <label class='col-sm-5'>Max Winners: </label>
+                <input type="text" name="max_winners" class='col-sm-6'>
+            </div>
+
+            <div class='mb-3'>
+                <label class='col-sm-5'>Start Date: </label>
+                <input type="datetime-local" id="start_date" name="start_date"
+                value="2018-08-18T08:00"
+                min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6'>
+            </div>
+            <div class='mb-3'>
+                <label class='col-sm-5'>End Date: </label>
+                <input type="datetime-local" id="end_date" name="end_date"
+                value="2018-08-25T08:00"
+                min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6'>
             </div>
 
             <hr>
 
-            <h5 class='col'>Winner cards:</h5>
+            <h5 class='col'>Default card </h5>
+            <input type="hidden" name="losercard_title">
+            <input type="hidden" name="losercard_content">
+            <div class='col'>
+                <div class='row'>
+                    <label class='col-sm-5'>Image URL: </label>
+                    <input type="text" name="losercard_image" class='col-sm-6'>
+                </div>
+            </div>
+
+            <hr>
+
+            <h5 class='col'>Winner cards</h5>
             <input type="hidden" name="winnercard1_title">
             <input type="hidden" name="winnercard1_content">
             
@@ -70,29 +95,8 @@
 
             <hr>
             
-            <h5 class='col'>Default card: </h5>
-            <input type="hidden" name="losercard_title">
-            <input type="hidden" name="losercard_content">
-            <div class='col'>
-                <div class='row'>
-                    <label class='col-sm-5'>Image URL: </label>
-                    <input type="text" name="losercard_image" class='col-sm-6'>
-                </div>
-                <div class='row'>
-                    <label class='col-sm-5'>Start Date: </label>
-                    <input type="datetime-local" id="start_date" name="start_date"
-                    value="2018-08-18T08:00"
-                    min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6'>
-                </div>
-                <div class='row'>
-                    <label class='col-sm-5'>End Date: </label>
-                    <input type="datetime-local" id="end_date" name="end_date"
-                    value="2018-08-25T08:00"
-                    min="2018-08-18T00:00" max="3000-12-31T00:00" class='col-sm-6'>
-                </div>
-            </div>
             <div class='text-center'>
-                <button class='btn text-light m-3'>Create</button>
+                <button class='btn btn-lg text-light m-3'>Create Contest</button>
             </div>
         </form>
     </div>

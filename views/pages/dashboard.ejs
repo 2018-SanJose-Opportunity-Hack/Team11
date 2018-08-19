@@ -22,8 +22,8 @@
                     <img class="card-img-top" src='https://i.imgur.com/QWSFMlb.png' alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title"><%= data[i].title %></h5>
-                        <a href="#" class="btn btn-primary">Manage</a>
-                        <a href="#" class="btn btn-info">Stats</a>
+                        <a href="/dashboard/contests/<%=data[i]._id %>" class="btn btn-primary">Manage</a>
+                        <a href="/dashboard/stats/<%=data[i]._id %>" class="btn btn-info">Stats</a>
                     </div>
                 </div>
 
