@@ -9,13 +9,16 @@ module.exports = function(app) {
     app.get('/', function(req, res) {
         res.render('pages/index');
     });
+    app.post('/', function(req, res){
+        users.login(req,res);
+    })
     // about page 
     app.get('/payment', function(req, res) {
         res.render('pages/payment');
     });
     // dashboard
     app.get('/dashboard', function(req, res) {
-        res.render('pages/dashboard', {contests});
+        res.render('pages/dashboard');
     });
     app.get('/dashboard/create_contest', function(req, res) {
         res.render('pages/create_contest');
@@ -32,7 +35,6 @@ module.exports = function(app) {
     app.get('/expired', function(req, res) {
         res.render('pages/expired');
     });
-
     app.get('/metrics', function(req,res) {
         res.render('pages/metrics', {title: 'Metrics Baby!'});
     })
