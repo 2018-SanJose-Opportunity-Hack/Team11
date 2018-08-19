@@ -17,10 +17,18 @@ module.exports = function(app) {
     app.get('/dashboard/create_contest', function(req, res) {
         res.render('pages/create_contest');
     });
-
-    app.get('/contest', function(req,res) {
+    app.get('/contest', function(req, res) {
         res.render('pages/contest');
     })
+    app.get('/win', function(req, res) {
+        res.render('pages/win');
+    });
+    app.get('/lose', function(req, res) {
+        res.render('pages/lose');
+    });
+    app.get('/expired', function(req, res) {
+        res.render('pages/expired');
+    });
 
     //----------API BELOW---------
     // For contests
